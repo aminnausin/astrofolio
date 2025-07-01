@@ -1,0 +1,266 @@
+---
+import type { Education, Experience, Project } from "@/types/types";
+
+import ExperienceCard from "@/components/cards/ExperienceCard.astro";
+import ProfileSection from "@/components/static/ProfileSection.astro";
+import ChipCard from "@/components/cards/ChipCard.astro";
+import ProjectCard from "../cards/ProjectCard.astro";
+import EducationCard from "../cards/EducationCard.astro";
+import BaseCard from "../cards/BaseCard.astro";
+
+const skills = [
+    "Vue.js",
+    "Laravel",
+    "Go",
+    "Python",
+    "TypeScript",
+    "JavaScript",
+    ".NET",
+    "C#",
+    "Node.JS",
+    "Django",
+    "Github Actions",
+    "Docker",
+    "Nix",
+    "React",
+    "PHP",
+];
+
+const experiences: Experience[] = [
+    {
+        title: "Applications Developer",
+        company: "Environment and Climate Change Canada",
+        location: "Toronto, ON",
+        startDate: "Sep 2022",
+        endDate: "Aug 2023",
+        skills: ["JavaScript", "JQuery", "PHP", "MSSQL", "Python", "GitLab", "Powershell", "Windows Server"],
+        description: [
+            "Designed and developed a Flask application using Python, HTML, and CSS to retrieve secure client documents with user authentication, pagination, and date filtering, improving document accessibility and usability.",
+            "Integrated search and filtering functionalities using OpenSearch API improving data retrieval efficiency for end-users.",
+            "Developed and maintained numerous SQL scripts which fetched important client data to create automated data packages, saving time and boosting productivity for other teams.",
+        ],
+    },
+    {
+        title: "Software Developer",
+        company: "Aisha Comfortable Coliving",
+        location: "Toronto, ON",
+        startDate: "Sep 2022",
+        endDate: "Aug 2023",
+        skills: ["TypeScript", "React", "Python", "Django", "SQLite", "GitHub CI/CD", "AWS Cloudfront", "Bash", "Jira"],
+        description: [
+            "Designed and developed a Flask application using Python, HTML, and CSS to retrieve secure client documents with user authentication, pagination, and date filtering, improving document accessibility and usability.",
+            "Integrated search and filtering functionalities using OpenSearch API improving data retrieval efficiency for end-users.",
+            "Developed and maintained numerous SQL scripts which fetched important client data to create automated data packages, saving time and boosting productivity for other teams.",
+        ],
+    },
+];
+
+const projects: Project[] = [
+    {
+        title: "MediaServer",
+        date: "Nov 2023 - Present",
+        tech: ["Vue", "Laravel", "Docker"],
+        link: "https://demo.mediaserver.nausin.me",
+        snapshot:
+            "A self-hosted media streaming platform with a custom video/music player, metadata scraping (via FFmpeg, LRCLib), queue-driven file processing (Horizon), and a live admin dashboard for task monitoring and library management.",
+    },
+];
+
+const education: Education[] = [
+    {
+        degree: "BSc. Computer Science Co-op",
+        school: "Toronto Metropolitan University",
+        location: "Toronto, ON",
+        dates: "Expected Dec 2025",
+    },
+];
+---
+
+<header class="flex flex-col font-figtree gap-4 text-[#4b5563] dark:text-neutral-200 text-base w-full">
+    <h1 class="text-4xl mb-4 text-[#111827] dark:text-white">Hi, I'm Nausin.</h1>
+    <p>I'm a final year computer science student at TMU.</p>
+    <pre
+        class="w-full">
+            I started with game development in Unity and C# before turning to TypeScript, Vue/React, and Laravel for web development. I also explored python,
+            creating industry grade backends during my internships, data scraping software and server management scripts.
+        </pre>
+</header>
+
+<div class="contents">
+    <ProfileSection title="Experience">
+        {
+            experiences.map((exp) => {
+                return <ExperienceCard {...exp} />;
+            })
+        }
+    </ProfileSection>
+
+    <ProfileSection title="Education">
+        {
+            education.map((edu) => {
+                return <EducationCard {...edu} />;
+            })
+        }
+    </ProfileSection>
+
+    <ProfileSection title="Projects">
+        {
+            projects.map((proj) => {
+                return <ProjectCard {...proj} />;
+            })
+        }
+    </ProfileSection>
+
+    <ProfileSection title="Skills">
+        <div class="flex flex-wrap gap-2 text-base">
+            {skills.map((skill) => <ChipCard class="bg-white dark:bg-neutral-950">{skill}</ChipCard>)}
+        </div>
+    </ProfileSection>
+
+    <ProfileSection title="Github">
+        <BaseCard>
+            <h3 class="text-2xl font-figtree">Activty</h3>
+            <a href="https://github.com/aminnausin" class="w-full" style="color: #8018ca">
+                <img alt="github activity chart" src="https://ghchart.rshah.org/8018ca/aminnausin" class="w-full h-auto" />
+            </a>
+        </BaseCard>
+        <BaseCard>
+            <h3 class="text-2xl font-figtree">Stats</h3>
+            <div class="flex dark:hidden w-full flex-wrap justify-center items-center">
+                <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/overview.svg#gh-light-mode-only" />
+                <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/languages.svg#gh-light-mode-only" />
+            </div>
+            <div class="hidden dark:flex w-full flex-wrap">
+                <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/overview.svg#gh-dark-mode-only" />
+                <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/languages.svg#gh-dark-mode-only" />
+            </div>
+        </BaseCard>
+    </ProfileSection>
+</div>
+
+<style>
+    main {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    #hero {
+        display: flex;
+        align-items: start;
+        flex-direction: column;
+        justify-content: center;
+        padding: 16px;
+    }
+
+    #links {
+        display: flex;
+        gap: 16px;
+    }
+
+    #links a {
+        display: flex;
+        align-items: center;
+        padding: 10px 12px;
+        color: #111827;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    #links a:hover {
+        color: rgb(78, 80, 86);
+    }
+
+    #links a svg {
+        height: 1em;
+        margin-left: 8px;
+    }
+
+    #links a.button {
+        color: white;
+        background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+            inset 0 -2px 0 rgba(0, 0, 0, 0.24);
+        border-radius: 10px;
+    }
+
+    #links a.button:hover {
+        color: rgb(230, 230, 230);
+        box-shadow: none;
+    }
+
+    pre {
+        font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+        font-weight: normal;
+        background: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 0;
+    }
+
+    code {
+        display: inline-block;
+        background:
+            linear-gradient(66.77deg, #f3cddd 0%, #f5cee7 100%) padding-box,
+            linear-gradient(155deg, #d83333 0%, #f041ff 18%, #f5cee7 45%) border-box;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        padding: 6px 8px;
+    }
+
+    .box {
+        padding: 16px;
+        background: rgba(255, 255, 255, 1);
+        border-radius: 16px;
+        border: 1px solid white;
+    }
+
+    #news {
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+        max-width: 300px;
+        text-decoration: none;
+        transition: background 0.2s;
+        backdrop-filter: blur(50px);
+    }
+
+    #news:hover {
+        background: rgba(255, 255, 255, 0.55);
+    }
+
+    @media screen and (max-height: 368px) {
+        #news {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        #container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #hero {
+            display: block;
+            padding-top: 10%;
+        }
+
+        #links {
+            flex-wrap: wrap;
+        }
+
+        #links a.button {
+            padding: 14px 18px;
+        }
+
+        #news {
+            right: 16px;
+            left: 16px;
+            bottom: 2.5rem;
+            max-width: 100%;
+        }
+    }
+</style>

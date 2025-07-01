@@ -1,0 +1,26 @@
+---
+import Head from "@/components/meta/Head.astro";
+import "@/styles/global.css";
+---
+
+<!doctype html>
+<html lang="en" class="font-figtree dark:[color-scheme:dark] scrollbar-minimal scrollbar:bg-neutral-300 dark:scrollbar:bg-neutral-900">
+    <Head />
+    <body class="flex flex-col font-quicksand [&>*]:max-w-3xl p-12 md:px-0 gap-12">
+        <slot />
+    </body>
+</html>
+
+<style>
+    html,
+    body {
+        margin: 0;
+        width: 100%;
+        transition:
+            color 0.5s,
+            background-color 0.5s;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+</style>

@@ -1,0 +1,16 @@
+---
+import ExternalLink from "@/components/buttons/ExternalLink.astro";
+import ThemeToggle from "../buttons/ThemeToggle.astro";
+---
+
+<nav class="flex mx-auto gap-4 w-full flex-wrap">
+    <span class="flex gap-2 me-auto">
+        <span class="rounded-lg w-6 h-6 bg-red-600/50 animate-spin"></span>
+        <h2 class="font-medium">Amin Nausin</h2>
+    </span>
+    <span class="flex gap-2 items-center">
+        <ExternalLink href="https://github.com/aminnausin" target="__blank">github</ExternalLink>
+        <ExternalLink href={import.meta.env.RESUME_URL} target="__blank">resume</ExternalLink>
+        <ThemeToggle />
+    </span>
+</nav>

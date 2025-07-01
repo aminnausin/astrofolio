@@ -1,0 +1,30 @@
+---
+import type { Education } from "@/types/types";
+
+import DescriptionItem from "@/components/lists/DescriptionItem.astro";
+import BaseCard from "@/components/cards/BaseCard.astro";
+
+const { degree, school, dates, description, location } = Astro.props as Education;
+---
+
+<BaseCard>
+    <header class="flex gap-2 flex-wrap items-center-safe">
+        <h3 class="me-auto text-2xl font-figtree">{degree}</h3>
+
+        <p class="text-neutral-700 dark:text-neutral-300">{dates}</p>
+
+        <section class="flex flex-col gap-1 w-full">
+            <p class="text-neutral-700 dark:text-neutral-300 me-auto">{school} | {location ?? "Toronto, ON"}</p>
+        </section>
+    </header>
+
+    {
+        description && description.length > 0 && (
+            <ul class="font-figtree">
+                {description.map((entry) => {
+                    return <DescriptionItem>{entry}</DescriptionItem>;
+                })}
+            </ul>
+        )
+    }
+</BaseCard>

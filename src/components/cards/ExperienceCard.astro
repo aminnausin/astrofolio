@@ -1,0 +1,41 @@
+---
+import type { Experience } from "@/types/types";
+
+import BaseCard from "./BaseCard.astro";
+import ChipCard from "./ChipCard.astro";
+import DescriptionItem from "../lists/DescriptionItem.astro";
+
+const { title, company, startDate, endDate, location, skills, description } = Astro.props as Experience;
+---
+
+<BaseCard>
+    <header class="flex gap-2 flex-wrap items-center-safe">
+        <h3 class="me-auto text-2xl font-figtree">{title ?? "Software Developer"}</h3>
+
+        <p class="text-neutral-700 dark:text-neutral-300">{startDate ?? "Sep 2022"} - {endDate ?? "Aug 2023"}</p>
+
+        <section class="flex flex-col gap-1 w-full">
+            <p class="text-neutral-700 dark:text-neutral-300 me-auto">{company ?? "Environment and Climate Change Canada"} | {location ?? "Toronto, ON"}</p>
+
+            {
+                skills && skills.length > 0 && (
+                    <div class="flex flex-wrap gap-2">
+                        {skills?.map((skill) => {
+                            return <ChipCard key>{skill}</ChipCard>;
+                        })}
+                    </div>
+                )
+            }
+        </section>
+    </header>
+
+    {
+        description && description.length > 0 && (
+            <ul class="font-figtree">
+                {description.map((entry) => {
+                    return <DescriptionItem>{entry}</DescriptionItem>;
+                })}
+            </ul>
+        )
+    }
+</BaseCard>

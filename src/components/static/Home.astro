@@ -62,8 +62,8 @@ const skills = (await getEntry("skills", "index"))?.data;
         <BaseCard>
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="flex flex-col gap-2">
-                    <CardHeader class="font-semibold text-sm uppercase">Frontend</CardHeader>
-                    <ul class="space-y-1 text-sm text-neutral-800 dark:text-neutral-200">
+                    <CardHeader class="text-sm">Frontend</CardHeader>
+                    <ul class="space-y-1 text-neutral-800 dark:text-neutral-200">
                         <li>Vue 3 (primary framework)</li>
                         <li>React (work exp.)</li>
                         <li>Astro (this site)</li>
@@ -72,8 +72,8 @@ const skills = (await getEntry("skills", "index"))?.data;
                 </div>
 
                 <div class="flex flex-col gap-2">
-                    <CardHeader class="font-semibold text-sm uppercase">Backend</CardHeader>
-                    <ul class="space-y-1 text-sm text-neutral-800 dark:text-neutral-200">
+                    <CardHeader class="text-sm">Backend</CardHeader>
+                    <ul class="space-y-1 text-neutral-800 dark:text-neutral-200">
                         <li>Laravel (full-featured web apps)</li>
                         <li>Python/Django RF (work exp.)</li>
                         <li>Go (API tooling & async workers)</li>
@@ -82,8 +82,8 @@ const skills = (await getEntry("skills", "index"))?.data;
                 </div>
 
                 <div class="flex flex-col gap-2">
-                    <CardHeader class="font-semibold text-sm uppercase">Infrastructure</CardHeader>
-                    <ul class="space-y-1 text-sm text-neutral-800 dark:text-neutral-200">
+                    <CardHeader class="text-sm">Infrastructure</CardHeader>
+                    <ul class="space-y-1 text-neutral-800 dark:text-neutral-200">
                         <li>Docker, NGINX, Caddy</li>
                         <li>GitHub Actions (CI/CD)</li>
                         <li>PostgreSQL, Redis</li>
@@ -94,8 +94,8 @@ const skills = (await getEntry("skills", "index"))?.data;
 
             <div class="mt-8 text-sm text-neutral-600 dark:text-neutral-300">
                 I’ve also worked with: JavaScript, PHP, Svelte, Supabase, C#, Unity, FFmpeg, WebSockets, and others — covered in project descriptions.
-            </div></BaseCard
-        >
+            </div>
+        </BaseCard>
         <div class="flex flex-wrap gap-2">
             {
                 Object.entries(skills ?? {}).map(([_, items]) => {
@@ -118,9 +118,8 @@ const skills = (await getEntry("skills", "index"))?.data;
 
     <ProfileSection title="Activty" cla>
         <!-- <a href="https://github.com/aminnausin" class="w-full" style="color: #9e2d00"></a> -->
-        <a href="https://github.com/aminnausin" class="w-full" style="color: #701ea7">
-            <img alt="github activity chart" src="https://ghchart.rshah.org/701ea7/aminnausin" class="w-full h-auto dark:hidden" />
-            <img alt="github activity chart" src="https://ghchart.rshah.org/9e2d00/aminnausin" class="w-full h-auto hidden dark:block" />
+        <a href="https://github.com/aminnausin" class="w-full" style="color: #6d1fff ">
+            <img alt="github activity chart" src="https://ghchart.rshah.org/7c15c5/aminnausin" class="w-full h-auto" />
         </a>
     </ProfileSection>
 

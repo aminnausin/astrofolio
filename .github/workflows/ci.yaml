@@ -2,10 +2,53 @@ name: CI & Docker Release
 
 on:
   push:
-    branches: [ 'main', 'prod' ]
+    branches: [ 'mainK' ]
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: 'Version bump type'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+        - major
+        - minor
+        - patch
+
+env:
+  BUMP_INPUT: ${{ github.event.inputs.bump || 'patch' }}
 
 jobs: 
+  # ==========================
+  #  Check for code updates
+  # ==========================
+  check-code-changes:
+    name: Check for Code Changes
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    outputs:
+      files_changed: ${{ steps.filter.outputs.changes != '[]' }}
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Check for file changes
+      id: filter
+      uses: dorny/paths-filter@v2
+      with:
+        filters: |
+          changed:
+              - 'src/**'
+              - 'public/**'
+              - 'docker/**'
+              - '.dockerignore'
+              - 'Dockerfile'
+              - 'astro.config.mjs'
+              - '*.json*'
+
   astro-tests:
+    needs: [ check-code-changes ]
+    if: needs.check-code-changes.outputs.files_changed == true
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -34,12 +77,69 @@ jobs:
       run: npm run type-check && npm run build
 
   # ==========================
+  #  Generate Version Tag
+  # ==========================
+  generate-version:
+    name: Generate Version
+    runs-on: ubuntu-latest
+    needs: [ astro-tests ]
+    if: success()
+    permissions:
+      contents: write
+    outputs:
+      tag: ${{ steps.bump_version.outputs.tag }}
+    strategy:
+      fail-fast: true
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Configure Git Safe Directory
+      run: git config --global --add safe.directory "$GITHUB_WORKSPACE"  
+
+    - name: Bump version in package.json
+      id: bump_version
+      run: |
+        CURRENT_VERSION=$(jq -r .version package.json)
+        IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_VERSION"
+
+        if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+          INCREMENT="${BUMP_INPUT:-patch}"
+
+          case $INCREMENT in
+            major)
+            MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0 ;;
+            minor)
+            MINOR=$((MINOR + 1)); PATCH=0 ;;
+            patch|*)
+            PATCH=$((PATCH + 1)) ;;
+          esac
+        elif [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+          IS_MERGE=$(git log -1 --pretty=%P | wc -w)
+          if [ "$IS_MERGE" -gt 1 ]; then
+            PATCH=$((PATCH + 1))
+          fi
+        fi
+
+        NEW_VERSION="$MAJOR.$MINOR.$PATCH"
+        echo "🔖 New version: $NEW_VERSION"
+        jq ".version = \"$NEW_VERSION\"" package.json > temp && mv temp package.json
+
+        echo "tag=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+    - name: Commit updated package.json
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: 'chore: bump version to ${{ steps.bump_version.outputs.TAG }} [skip ci]'
+        file_pattern: package.json
+        
+  # ==========================
   #  Publish Docker Image
   # ==========================
   build-docker:
+    needs: [ astro-tests, generate-version ]
     name: Build Docker Image
     runs-on: ubuntu-latest
-    needs: [ astro-tests ]
     permissions:
       contents: write
     steps:
@@ -59,6 +159,7 @@ jobs:
         push: true
         tags: |
           aminnausin/astrofolio:latest
+          aminnausin/astrofolio:${{ needs.generate-version.outputs.tag }}
         build-args: |
           DOMAIN=${{ vars.DOMAIN }}
           PLAUSIBLE_DOMAIN=${{ vars.PLAUSIBLE_DOMAIN }}

@@ -1,20 +1,21 @@
-# Astro Starter Kit: Basics
+# Amin Nausin – Portfolio
+
+A stylised personal portfolio site built with [Astro](https://astro.build/), [Vue 3](https://vuejs.org/), and [Tailwind CSS](https://tailwindcss.com/).  
+It showcases projects, experiences, and skills with dynamic visuals, including a starfield background rendered using [Three.js](https://threejs.org/).
 
 ```sh
-npm create astro@latest -- --template basics
+npm run docker:build
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+> 🧑‍🚀 **Powered by:** Digital Ocean
 
 ![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+![preview](https://github.com/user-attachments/assets/bd79858f-c4d8-4a7e-a795-da5c8a37b5ce#gh-light-mode-only)
+![preview](https://github.com/user-attachments/assets/a357ad2c-01a1-49da-9359-467f7381b3be#gh-dark-mode-only)
 
 ## 🚀 Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
+Structure of my portfolio:
 
 ```text
 /
@@ -23,12 +24,40 @@ Inside of your Astro project, you'll see the following folders and files:
 ├── src/
 │   ├── layouts/
 │   │   └── Layout.astro
+│   ├── types/
+│   │   └── types.ts
+│   ├── styles/
+│   │   └── global.css
+│   ├── content/
+│   │   └── collection/index.json
+│   ├── components/
+│   │   └── category/component.[astro/vue]
+│   ├── assets/
+│   │   └── asset.*
 │   └── pages/
 │       └── index.astro
+├── Dockerfile
+├── compose.yaml
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+### Features
+
+- **Fully static, fast-loading** site powered by Astro
+- **Dynamic starfield background** using Three.js
+- **Dark/light theme toggle** with animated transitions
+- **Responsive** layout with Tailwind CSS
+- **Dockerised** for easy deployment (Nginx/Alpine-based)
+- **CI/CD via GitHub Actions** with automatic Docker Hub publishing
+
+### Tech Stack
+
+- Astro + Vue
+- TailwindCSS
+- Three.js (for starfield)
+- Docker + Nginx Container
+- GitHub Actions CI
+- Plausible (self-hosted analytics)
 
 ## 🧞 Commands
 
@@ -40,9 +69,10 @@ All commands are run from the root of the project, from a terminal:
 | `npm run dev`             | Starts local dev server at `localhost:4321`      |
 | `npm run build`           | Build your production site to `./dist/`          |
 | `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run type-check`      | Run Astro and Vue type checking for CI           |
+| `npm run docker:build`    | Build and publish Docker image for CI            |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
+## 👀 Want to see more of my projects?
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Feel free to check [my longest running project](https://github.com/aminnausin/mediaServer) or add my [GitHub Statistics Snapshot](https://github.com/aminnausin/snapshot) to your profile README.

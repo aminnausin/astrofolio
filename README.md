@@ -47,7 +47,7 @@ Structure of my portfolio:
 - **Dark/light theme toggle** with animated transitions
 - **Responsive** layout with Tailwind CSS
 - **Dockerised** for easy deployment (Nginx/Alpine-based)
-- **CI/CD via GitHub Actions** with automatic Docker Hub publishing
+- **CI/CD via GitHub Actions** with automatic Docker Hub publishing and Versioning
 
 ### Tech Stack
 

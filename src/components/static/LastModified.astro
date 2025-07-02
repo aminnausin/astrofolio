@@ -8,7 +8,7 @@ let formattedDate = rawDate.toDateString() === now.toDateString() ? "Today" : ""
 
 if (rawDate.toDateString() === yesterday.toDateString()) formattedDate = "Yesterday";
 
-let formattedRawDate = rawDate.toLocaleString(["en-CA"], {
+let formattedRawDate = rawDate.toLocaleString(undefined, {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",

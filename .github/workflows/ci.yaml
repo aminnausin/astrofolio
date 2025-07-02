@@ -41,10 +41,16 @@ jobs:
               - 'src/**'
               - 'public/**'
               - 'docker/**'
+              - '.github/**'
               - '.dockerignore'
               - 'Dockerfile'
               - 'astro.config.mjs'
               - '*.json*'
+
+    - name: Print changed files output
+      run: |
+        echo "Changed: ${{ steps.filter.outputs.changes }}"
+        echo "Changed: ${{ steps.filter.outputs.changes != '[]' }}"
 
   astro-tests:
     needs: [ check-code-changes ]

@@ -9,7 +9,6 @@ npm run docker:build
 
 > 🧑‍🚀 **Powered by:** Digital Ocean
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
 ![preview](https://github.com/user-attachments/assets/bd79858f-c4d8-4a7e-a795-da5c8a37b5ce#gh-light-mode-only)
 ![preview](https://github.com/user-attachments/assets/a357ad2c-01a1-49da-9359-467f7381b3be#gh-dark-mode-only)
 

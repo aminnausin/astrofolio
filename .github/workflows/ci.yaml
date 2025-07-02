@@ -59,4 +59,8 @@ jobs:
         push: true
         tags: |
           aminnausin/astrofolio:latest
+        build-args: |
+          DOMAIN=${{ vars.DOMAIN }}
+          PLAUSIBLE_DOMAIN=${{ vars.PLAUSIBLE_DOMAIN }}
+          RESUME_URL=${{ vars.RESUME_URL }}
  

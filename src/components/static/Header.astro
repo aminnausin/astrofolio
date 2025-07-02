@@ -1,10 +1,10 @@
 ---
 import ExternalLink from "@/components/buttons/ExternalLink.astro";
 import ThemeToggle from "@/components/buttons/ThemeToggle.astro";
-import cat from "@/assets/cat.png";
+import cat from "@/assets/cat.webp";
 ---
 
-<nav class="flex mx-auto gap-4 w-full flex-wrap max-w-3xl">
+<nav class={`flex mx-auto gap-4 w-full flex-wrap max-w-3xl ${Astro.props?.class ?? ""}`.trim()}>
     <span class="flex gap-2 me-auto">
         <span class="rounded-lg size-6 shrink-0 my-auto bg-red-600/50 animate-spin overflow-clip group"
             ><img src={cat.src} alt="cat" class="opacity-0 group-hover:opacity-100 object-cover transition-opacity duration-300 ease-out" /></span

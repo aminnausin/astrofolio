@@ -1,9 +1,27 @@
+---
+let description = "Building self-hosted tools, improving workflows, and exploring full-stack systems with Vue, Laravel, and Go.";
+---
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:title" content="Amin Nausin - Full Stack Software Developer" />
+    <meta property="og:description" content={description} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image" content="src/assets/preview.webp" />
+
     <title>Amin Nausin</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" href="/src/assets/background.svg" />
+    <link rel="preload" as="image" href="/src/assets/cat.webp" />
+    <link rel="preload" as="image" href="/src/assets/preview.webp" />
+    <link rel="preload" as="image" href="https://ghchart.rshah.org/7c15c5/aminnausin" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <script is:inline defer data-domain={import.meta.env.DOMAIN} src={import.meta.env.PLAUSIBLE_DOMAIN}></script>
 </head>

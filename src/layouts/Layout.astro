@@ -4,9 +4,9 @@ import "@/styles/global.css";
 ---
 
 <!doctype html>
-<html lang="en" class="font-figtree dark:[color-scheme:dark] scrollbar-minimal scrollbar:bg-neutral-300 dark:scrollbar:bg-neutral-900">
+<html lang="en" class={`font-figtree dark:[color-scheme:dark] scrollbar-minimal scrollbar:bg-neutral-300 dark:scrollbar:bg-neutral-900`}>
     <Head />
-    <body class="flex flex-col font-quicksand p-6 md:py-12 gap-12">
+    <body class={`flex flex-col font-quicksand p-6 md:py-12 gap-12 ${Astro.props?.class ?? ""}`.trim()}>
         <slot />
     </body>
 </html>

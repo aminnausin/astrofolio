@@ -8,7 +8,9 @@ RUN npm ci
 
 COPY . .
 
-RUN echo "PUBLIC_LAST_MODIFIED=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> .env
+RUN export BUILT_AT=$(date -u +"%Y-%m-%dT%H:%M:%SZ") \
+    && echo "PUBLIC_LAST_MODIFIED=$BUILT_AT" \
+    && echo "PUBLIC_LAST_MODIFIED=$BUILT_AT" >> .env
 RUN npm run build
 
 # Step 2: Serve with nginx

@@ -49,12 +49,11 @@ jobs:
 
     - name: Print changed files output
       run: |
-        echo "Changed: ${{ steps.filter.outputs.changes }}"
         echo "Changed: ${{ steps.filter.outputs.changes != '[]' }}"
 
   astro-tests:
     needs: [ check-code-changes ]
-    if: needs.check-code-changes.outputs.files_changed == true
+    if: needs.check-code-changes.outputs.files_changed == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: read

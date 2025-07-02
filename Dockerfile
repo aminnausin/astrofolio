@@ -15,8 +15,8 @@ ARG RESUME_URL
 RUN export BUILT_AT=$(date -u +"%Y-%m-%dT%H:%M:%SZ") \
     && echo "PUBLIC_LAST_MODIFIED=$BUILT_AT" \
     && echo "PUBLIC_LAST_MODIFIED=$BUILT_AT" >> .env \
-    && echo "PUBLIC_DOMAIN=$DOMAIN" >> .env && \
-    && echo "PUBLIC_PLAUSIBLE_DOMAIN=$PLAUSIBLE_DOMAIN" >> .env && \
+    && echo "PUBLIC_DOMAIN=$DOMAIN" >> .env \
+    && echo "PUBLIC_PLAUSIBLE_DOMAIN=$PLAUSIBLE_DOMAIN" >> .env \
     && echo "PUBLIC_RESUME_URL=$RESUME_URL" >> .env
 
 RUN npm run build

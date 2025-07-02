@@ -1,12 +1,14 @@
 ---
 import type { Project } from "@/types/types";
 
-import BaseCard from "./BaseCard.astro";
-import ChipCard from "./ChipCard.astro";
-import ProiconsOpen from "../icons/ProiconsOpen.astro";
+import DescriptionItem from "@/components/lists/DescriptionItem.astro";
+import ProiconsGithub from "@/components/icons/ProiconsGithub.astro";
+import ProiconsOpen from "@/components/icons/ProiconsOpen.astro";
+import CardHeader from "@/components/static/CardHeader.astro";
 import IconLink from "@/components/buttons/IconLink.astro";
-import DescriptionItem from "../lists/DescriptionItem.astro";
-import CardHeader from "../static/CardHeader.astro";
+
+import BaseCard from "@/components/cards/BaseCard.astro";
+import ChipCard from "@/components/cards/ChipCard.astro";
 
 const { title, date, tech, link, description, snapshot, github } = Astro.props as Project;
 ---
@@ -17,9 +19,16 @@ const { title, date, tech, link, description, snapshot, github } = Astro.props a
             {link && <span class="recent rounded bg-green-500 size-2 inline-block animate-pulse" style="box-shadow: 0 0 4px #6cc64480;" />}
             {title ?? "Software Developer"}
             {
-                (link || github) && (
-                    <IconLink href={link ?? github} target="__blank">
+                link && (
+                    <IconLink href={link} target="__blank" title="Demo">
                         <ProiconsOpen />
+                    </IconLink>
+                )
+            }
+            {
+                github && (
+                    <IconLink href={github} target="__blank" title="Github">
+                        <ProiconsGithub />
                     </IconLink>
                 )
             }

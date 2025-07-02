@@ -12,5 +12,6 @@
         "Github Actions"
     ],
     "link": "https://demo.mediaserver.nausin.me",
+    "github": "https://github.com/aminnausin/mediaServer",
     "snapshot": "A self-hosted media streaming platform with a custom video/music player, metadata scraping (via FFmpeg, LRCLib), queue-driven file processing, and a live admin dashboard for task monitoring and library management."
 }

@@ -2,6 +2,7 @@
 import type { Education } from "@/types/types";
 
 import DescriptionItem from "@/components/lists/DescriptionItem.astro";
+import CardHeader from "@/components/static/CardHeader.astro";
 import BaseCard from "@/components/cards/BaseCard.astro";
 
 const { degree, school, dates, description, location } = Astro.props as Education;
@@ -9,7 +10,7 @@ const { degree, school, dates, description, location } = Astro.props as Educatio
 
 <BaseCard>
     <header class="flex gap-2 flex-wrap items-center-safe">
-        <h3 class="me-auto text-2xl font-figtree">{degree}</h3>
+        <CardHeader>{degree}</CardHeader>
 
         <p class="text-neutral-700 dark:text-neutral-300">{dates}</p>
 

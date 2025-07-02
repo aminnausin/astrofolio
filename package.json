@@ -1,18 +1,27 @@
 {
   "name": "astrofolio",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "scripts": {
     "dev": "astro dev",
+    "type-check": "astro check && vue-tsc --noEmit",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "docker:build": "docker build . -t aminnausin/astrofolio && docker push aminnausin/astrofolio"
   },
   "dependencies": {
     "@astrojs/vue": "^5.1.0",
     "@tailwindcss/vite": "^4.1.11",
     "astro": "^5.10.1",
     "tailwindcss": "^4.1.11",
+    "three": "^0.178.0",
     "vue": "^3.5.17"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@types/three": "^0.177.0",
+    "typescript": "^5.8.3",
+    "vue-tsc": "^3.0.0"
   }
 }

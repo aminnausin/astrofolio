@@ -1,0 +1,12 @@
+{
+    "order": 5,
+    "title": "Snapshot",
+    "date": "Jun 2025",
+    "tech": [
+        "Go",
+        "GraphQL",
+        "Github Actions"
+    ],
+    "github": "https://github.com/aminnausin/snapshot/",
+    "snapshot": "A Github statistics Snapshot generator for your profile based on your contributions to public and private repositories."
+}

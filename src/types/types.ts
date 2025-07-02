@@ -9,6 +9,7 @@ export interface Experience {
 }
 
 export interface Project {
+    order: number;
     title: string;
     date: string;
     tech: string[];

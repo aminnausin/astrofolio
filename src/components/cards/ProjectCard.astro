@@ -6,13 +6,14 @@ import ChipCard from "./ChipCard.astro";
 import ProiconsOpen from "../icons/ProiconsOpen.astro";
 import IconLink from "@/components/buttons/IconLink.astro";
 import DescriptionItem from "../lists/DescriptionItem.astro";
+import CardHeader from "../static/CardHeader.astro";
 
 const { title, date, tech, link, description, snapshot, github } = Astro.props as Project;
 ---
 
 <BaseCard>
     <header class="flex gap-2 flex-wrap items-center-safe">
-        <h3 class="me-auto text-2xl font-figtree flex items-center gap-2">
+        <CardHeader class="flex items-center gap-2">
             {link && <span class="recent rounded bg-green-500 size-2 inline-block animate-pulse" style="box-shadow: 0 0 4px #6cc64480;" />}
             {title ?? "Software Developer"}
             {
@@ -22,7 +23,7 @@ const { title, date, tech, link, description, snapshot, github } = Astro.props a
                     </IconLink>
                 )
             }
-        </h3>
+        </CardHeader>
 
         <p class="text-neutral-700 dark:text-neutral-300">{date ?? "Now"}</p>
         <div class="flex flex-wrap gap-2 w-full">

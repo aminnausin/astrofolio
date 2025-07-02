@@ -1,0 +1,23 @@
+{
+    "title": "Full Stack Software Developer (intern)",
+    "company": "Aisha Comfortable Coliving",
+    "location": "Toronto, ON",
+    "startDate": "Aug 2024",
+    "endDate": "Dec 2024",
+    "skills": [
+        "TypeScript",
+        "React",
+        "Python",
+        "Django",
+        "SQLite",
+        "GitHub CI/CD",
+        "AWS Cloudfront",
+        "Bash",
+        "Jira"
+    ],
+    "description": [
+        "Developed and launched a full-stack property management platform using Django Rest Framework, Python, React, and Git, taking over a partially built system and delivering a stable MVP focused on maintainability and performance.",
+        "Developed a responsive, component-based frontend with Tailwind CSS, integrating API-driven views and building a CMS and admin dashboard for 20+ properties and 50+ users.",
+        "Mentored 2 junior interns through Jira, code reviews and pair programming, supporting team growth."
+    ]
+}

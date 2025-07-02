@@ -1,8 +1,20 @@
 ---
+import MeteorField from "@/components/static/MeteorField.astro";
 import background from "@/assets/background.svg";
+import StarField from "@/components/static/StarField.vue";
 ---
 
-<img id="background" src={background.src} alt="" fetchpriority="high" style="animation: pulse 7s cubic-bezier(0.4, 0, 0.6, 1) infinite;" />
+<img
+    id="background"
+    src={background.src}
+    alt="background effecty"
+    fetchpriority="high"
+    style="animation: pulse 7s cubic-bezier(0.4, 0, 0.6, 1) infinite;"
+    class="max-w-3xl"
+/>
+<StarField client:load />
+<MeteorField />
+
 <style>
     #background {
         position: fixed;

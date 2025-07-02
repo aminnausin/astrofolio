@@ -1,0 +1,14 @@
+{
+    "title": "Airport Webcam",
+    "date": "Nov 2023 - Feb 2023",
+    "tech": [
+        "Svelte",
+        "JavaScript",
+        "JQuery",
+        "Tailwind",
+        "SkyScanner"
+    ],
+    "link": "https://airport-webcam.vercel.app/",
+    "github": "https://github.com/aminnausin/AirportWebcam",
+    "snapshot": "A combined Webcam, Radio and Arrival/Departures board for YUL (Montréal International Airport) based on their old UI. The radio and airline images no longer work as their sources are now private. The webcam occasionally comes online. "
+}

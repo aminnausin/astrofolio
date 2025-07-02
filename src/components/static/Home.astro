@@ -1,95 +1,42 @@
 ---
-import type { Education, Experience, Project } from "@/types/types";
+import type { Project } from "@/types/types";
+
+import { getCollection, getEntry } from "astro:content";
 
 import ExperienceCard from "@/components/cards/ExperienceCard.astro";
 import ProfileSection from "@/components/static/ProfileSection.astro";
+import EducationCard from "@/components/cards/EducationCard.astro";
+import LastModified from "@/components/static/LastModified.astro";
+import ProjectCard from "@/components/cards/ProjectCard.astro";
+import CardHeader from "@/components/static/CardHeader.astro";
+import BaseCard from "@/components//cards/BaseCard.astro";
 import ChipCard from "@/components/cards/ChipCard.astro";
-import ProjectCard from "../cards/ProjectCard.astro";
-import EducationCard from "../cards/EducationCard.astro";
-import BaseCard from "../cards/BaseCard.astro";
 
-const skills = [
-    "Vue.js",
-    "Laravel",
-    "Go",
-    "Python",
-    "TypeScript",
-    "JavaScript",
-    ".NET",
-    "C#",
-    "Node.JS",
-    "Django",
-    "Github Actions",
-    "Docker",
-    "Nix",
-    "React",
-    "PHP",
-];
-
-const experiences: Experience[] = [
-    {
-        title: "Applications Developer",
-        company: "Environment and Climate Change Canada",
-        location: "Toronto, ON",
-        startDate: "Sep 2022",
-        endDate: "Aug 2023",
-        skills: ["JavaScript", "JQuery", "PHP", "MSSQL", "Python", "GitLab", "Powershell", "Windows Server"],
-        description: [
-            "Designed and developed a Flask application using Python, HTML, and CSS to retrieve secure client documents with user authentication, pagination, and date filtering, improving document accessibility and usability.",
-            "Integrated search and filtering functionalities using OpenSearch API improving data retrieval efficiency for end-users.",
-            "Developed and maintained numerous SQL scripts which fetched important client data to create automated data packages, saving time and boosting productivity for other teams.",
-        ],
-    },
-    {
-        title: "Software Developer",
-        company: "Aisha Comfortable Coliving",
-        location: "Toronto, ON",
-        startDate: "Sep 2022",
-        endDate: "Aug 2023",
-        skills: ["TypeScript", "React", "Python", "Django", "SQLite", "GitHub CI/CD", "AWS Cloudfront", "Bash", "Jira"],
-        description: [
-            "Designed and developed a Flask application using Python, HTML, and CSS to retrieve secure client documents with user authentication, pagination, and date filtering, improving document accessibility and usability.",
-            "Integrated search and filtering functionalities using OpenSearch API improving data retrieval efficiency for end-users.",
-            "Developed and maintained numerous SQL scripts which fetched important client data to create automated data packages, saving time and boosting productivity for other teams.",
-        ],
-    },
-];
-
-const projects: Project[] = [
-    {
-        title: "MediaServer",
-        date: "Nov 2023 - Present",
-        tech: ["Vue", "Laravel", "Docker"],
-        link: "https://demo.mediaserver.nausin.me",
-        snapshot:
-            "A self-hosted media streaming platform with a custom video/music player, metadata scraping (via FFmpeg, LRCLib), queue-driven file processing (Horizon), and a live admin dashboard for task monitoring and library management.",
-    },
-];
-
-const education: Education[] = [
-    {
-        degree: "BSc. Computer Science Co-op",
-        school: "Toronto Metropolitan University",
-        location: "Toronto, ON",
-        dates: "Expected Dec 2025",
-    },
-];
+const experiences = await getCollection("experiences");
+const projects = (await getCollection("projects")).sort((a: { data: Project }, b: { data: Project }) => a.data.order - b.data.order);
+const education = await getCollection("education");
+const skills = (await getEntry("skills", "index"))?.data;
 ---
 
-<header class="flex flex-col font-figtree gap-4 text-[#4b5563] dark:text-neutral-200 text-base w-full">
+<header class="flex flex-col font-figtree gap-4 text-neutral-700 dark:text-neutral-200 text-base w-full">
     <h1 class="text-4xl mb-4 text-[#111827] dark:text-white">Hi, I'm Nausin.</h1>
-    <p>I'm a final year computer science student at TMU.</p>
-    <pre
-        class="w-full">
-            I started with game development in Unity and C# before turning to TypeScript, Vue/React, and Laravel for web development. I also explored python,
-            creating industry grade backends during my internships, data scraping software and server management scripts.
-        </pre>
+    <p>I'm a final-year Computer Science student at Toronto Metropolitan University, building tools to make life easier.</p>
+
+    <p>
+        I started out building games in Unity with C#, then shifted to web development using TypeScript, Vue/React, and Laravel. During internships, I developed
+        production-grade Django/Python backends, React frontends, data scrapers, and server automation tools.
+    </p>
+
+    <p>
+        Otherwise, I enjoy <span class="italic dark:text-neutral-300 text-sm">(trying)</span> to learn the electric guitar, arial photography, and exploring new
+        parts of the city.
+    </p>
 </header>
 
 <div class="contents">
     <ProfileSection title="Experience">
         {
-            experiences.map((exp) => {
+            experiences.map(({ data: exp }) => {
                 return <ExperienceCard {...exp} />;
             })
         }
@@ -97,7 +44,7 @@ const education: Education[] = [
 
     <ProfileSection title="Education">
         {
-            education.map((edu) => {
+            education.map(({ data: edu }) => {
                 return <EducationCard {...edu} />;
             })
         }
@@ -105,91 +52,82 @@ const education: Education[] = [
 
     <ProfileSection title="Projects">
         {
-            projects.map((proj) => {
+            projects.map(({ data: proj }) => {
                 return <ProjectCard {...proj} />;
             })
         }
     </ProfileSection>
 
-    <ProfileSection title="Skills">
-        <div class="flex flex-wrap gap-2 text-base">
-            {skills.map((skill) => <ChipCard class="bg-white dark:bg-neutral-950">{skill}</ChipCard>)}
+    <ProfileSection title="Core Technologies">
+        <BaseCard>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="flex flex-col gap-2">
+                    <CardHeader class="font-semibold text-sm uppercase">Frontend</CardHeader>
+                    <ul class="space-y-1 text-sm text-neutral-800 dark:text-neutral-200">
+                        <li>Vue 3 (primary framework)</li>
+                        <li>React (work exp.)</li>
+                        <li>Astro (this site)</li>
+                        <li>TypeScript, TailwindCSS</li>
+                    </ul>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <CardHeader class="font-semibold text-sm uppercase">Backend</CardHeader>
+                    <ul class="space-y-1 text-sm text-neutral-800 dark:text-neutral-200">
+                        <li>Laravel (full-featured web apps)</li>
+                        <li>Python/Django RF (work exp.)</li>
+                        <li>Go (API tooling & async workers)</li>
+                        <li>ASP.NET Core, Node.js</li>
+                    </ul>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <CardHeader class="font-semibold text-sm uppercase">Infrastructure</CardHeader>
+                    <ul class="space-y-1 text-sm text-neutral-800 dark:text-neutral-200">
+                        <li>Docker, NGINX, Caddy</li>
+                        <li>GitHub Actions (CI/CD)</li>
+                        <li>PostgreSQL, Redis</li>
+                        <li>NixOS, Digital Ocean</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-8 text-sm text-neutral-600 dark:text-neutral-300">
+                I’ve also worked with: JavaScript, PHP, Svelte, Supabase, C#, Unity, FFmpeg, WebSockets, and others — covered in project descriptions.
+            </div></BaseCard
+        >
+        <div class="flex flex-wrap gap-2">
+            {
+                Object.entries(skills ?? {}).map(([_, items]) => {
+                    return items.map((skill) => <ChipCard class="bg-white dark:bg-neutral-950 hover:ring-purple-600/50">{skill}</ChipCard>);
+                })
+            }
         </div>
     </ProfileSection>
 
-    <ProfileSection title="Github">
-        <BaseCard>
-            <h3 class="text-2xl font-figtree">Activty</h3>
-            <a href="https://github.com/aminnausin" class="w-full" style="color: #8018ca">
-                <img alt="github activity chart" src="https://ghchart.rshah.org/8018ca/aminnausin" class="w-full h-auto" />
-            </a>
-        </BaseCard>
-        <BaseCard>
-            <h3 class="text-2xl font-figtree">Stats</h3>
-            <div class="flex dark:hidden w-full flex-wrap justify-center items-center">
-                <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/overview.svg#gh-light-mode-only" />
-                <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/languages.svg#gh-light-mode-only" />
-            </div>
-            <div class="hidden dark:flex w-full flex-wrap">
-                <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/overview.svg#gh-dark-mode-only" />
-                <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/languages.svg#gh-dark-mode-only" />
-            </div>
-        </BaseCard>
+    <!-- <ProfileSection title="Github">
+        <div class="flex dark:hidden w-full flex-wrap justify-center items-center">
+            <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/overview.svg#gh-light-mode-only" />
+            <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/languages.svg#gh-light-mode-only" />
+        </div>
+        <div class="hidden dark:flex w-full flex-wrap">
+            <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/overview.svg#gh-dark-mode-only" />
+            <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/languages.svg#gh-dark-mode-only" />
+        </div>
+    </ProfileSection> -->
+
+    <ProfileSection title="Activty" cla>
+        <!-- <a href="https://github.com/aminnausin" class="w-full" style="color: #9e2d00"></a> -->
+        <a href="https://github.com/aminnausin" class="w-full" style="color: #701ea7">
+            <img alt="github activity chart" src="https://ghchart.rshah.org/701ea7/aminnausin" class="w-full h-auto dark:hidden" />
+            <img alt="github activity chart" src="https://ghchart.rshah.org/9e2d00/aminnausin" class="w-full h-auto hidden dark:block" />
+        </a>
     </ProfileSection>
+
+    <LastModified />
 </div>
 
 <style>
-    main {
-        height: 100%;
-        display: flex;
-        justify-content: center;
-    }
-
-    #hero {
-        display: flex;
-        align-items: start;
-        flex-direction: column;
-        justify-content: center;
-        padding: 16px;
-    }
-
-    #links {
-        display: flex;
-        gap: 16px;
-    }
-
-    #links a {
-        display: flex;
-        align-items: center;
-        padding: 10px 12px;
-        color: #111827;
-        text-decoration: none;
-        transition: color 0.2s;
-    }
-
-    #links a:hover {
-        color: rgb(78, 80, 86);
-    }
-
-    #links a svg {
-        height: 1em;
-        margin-left: 8px;
-    }
-
-    #links a.button {
-        color: white;
-        background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
-        box-shadow:
-            inset 0 0 0 1px rgba(255, 255, 255, 0.12),
-            inset 0 -2px 0 rgba(0, 0, 0, 0.24);
-        border-radius: 10px;
-    }
-
-    #links a.button:hover {
-        color: rgb(230, 230, 230);
-        box-shadow: none;
-    }
-
     pre {
         font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
         font-weight: normal;
@@ -208,59 +146,5 @@ const education: Education[] = [
         border-radius: 8px;
         border: 1px solid transparent;
         padding: 6px 8px;
-    }
-
-    .box {
-        padding: 16px;
-        background: rgba(255, 255, 255, 1);
-        border-radius: 16px;
-        border: 1px solid white;
-    }
-
-    #news {
-        position: absolute;
-        bottom: 16px;
-        right: 16px;
-        max-width: 300px;
-        text-decoration: none;
-        transition: background 0.2s;
-        backdrop-filter: blur(50px);
-    }
-
-    #news:hover {
-        background: rgba(255, 255, 255, 0.55);
-    }
-
-    @media screen and (max-height: 368px) {
-        #news {
-            display: none;
-        }
-    }
-
-    @media screen and (max-width: 768px) {
-        #container {
-            display: flex;
-            flex-direction: column;
-        }
-
-        #hero {
-            display: block;
-            padding-top: 10%;
-        }
-
-        #links {
-            flex-wrap: wrap;
-        }
-
-        #links a.button {
-            padding: 14px 18px;
-        }
-
-        #news {
-            right: 16px;
-            left: 16px;
-            bottom: 2.5rem;
-            max-width: 100%;
-        }
     }
 </style>

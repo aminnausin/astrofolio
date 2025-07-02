@@ -1,0 +1,16 @@
+{
+    "order": 1,
+    "title": "MediaServer",
+    "date": "Nov 2023 - Present",
+    "tech": [
+        "Vue",
+        "TypeScript",
+        "Laravel",
+        "PHP",
+        "Tailwind",
+        "Docker",
+        "Github Actions"
+    ],
+    "link": "https://demo.mediaserver.nausin.me",
+    "snapshot": "A self-hosted media streaming platform with a custom video/music player, metadata scraping (via FFmpeg, LRCLib), queue-driven file processing, and a live admin dashboard for task monitoring and library management."
+}

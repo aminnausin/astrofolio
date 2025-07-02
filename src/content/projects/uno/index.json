@@ -1,0 +1,10 @@
+{
+    "title": "Online Multiplayer Uno",
+    "date": "Dec 2019",
+    "tech": [
+        "Unity",
+        "C#"
+    ],
+    "link": "https://amin-nausin.itch.io/uno",
+    "snapshot": "A browser based Uno card game. Supports online play with up to 4 players."
+}

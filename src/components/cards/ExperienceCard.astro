@@ -1,16 +1,17 @@
 ---
 import type { Experience } from "@/types/types";
 
-import BaseCard from "./BaseCard.astro";
-import ChipCard from "./ChipCard.astro";
-import DescriptionItem from "../lists/DescriptionItem.astro";
+import DescriptionItem from "@/components/lists/DescriptionItem.astro";
+import CardHeader from "@/components/static/CardHeader.astro";
+import ChipCard from "@/components/cards//ChipCard.astro";
+import BaseCard from "@/components/cards/BaseCard.astro";
 
 const { title, company, startDate, endDate, location, skills, description } = Astro.props as Experience;
 ---
 
 <BaseCard>
     <header class="flex gap-2 flex-wrap items-center-safe">
-        <h3 class="me-auto text-2xl font-figtree">{title ?? "Software Developer"}</h3>
+        <CardHeader>{title ?? "Software Developer"}</CardHeader>
 
         <p class="text-neutral-700 dark:text-neutral-300">{startDate ?? "Sep 2022"} - {endDate ?? "Aug 2023"}</p>
 

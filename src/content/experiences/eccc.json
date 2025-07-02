@@ -1,0 +1,22 @@
+{
+    "title": "Web Applications Developer (intern)",
+    "company": "Environment and Climate Change Canada",
+    "location": "Toronto, ON",
+    "startDate": "Sep 2022",
+    "endDate": "Aug 2023",
+    "skills": [
+        "JavaScript",
+        "JQuery",
+        "PHP",
+        "MSSQL",
+        "Python",
+        "GitLab",
+        "Powershell",
+        "Windows Server"
+    ],
+    "description": [
+        "Devised 3+ backend services for CLIMS in PHP, Python, and MSSQL, revamping system reliability and cross-team data sharing.",
+        "Modernised legacy Delphi applications by migrating features to PHP / JS, reducing technical debt and amplifying maintainability.",
+        "Built a custom Excel-style keyboard navigation system, boosting accessibility and tripling data entry and workflow efficiency for the research team."
+    ]
+}

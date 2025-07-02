@@ -1,0 +1,16 @@
+{
+    "order": 2,
+    "title": "TMU-Marketplace",
+    "date": "Mar 2024 - Apr 2024",
+    "tech": [
+        "React",
+        "Express.js",
+        "Node.js",
+        "Tailwind",
+        "Supabase",
+        "Figma"
+    ],
+    "link": "https://tmu-marketplace.eldoss.me",
+    "github": "https://github.com/eldossjogy/TMU-MarketPlace",
+    "snapshot": "A full stack campus marketplace and classfields website with chat and a location based search engine."
+}

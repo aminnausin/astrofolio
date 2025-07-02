@@ -1,16 +1,19 @@
 ---
 import ExternalLink from "@/components/buttons/ExternalLink.astro";
-import ThemeToggle from "../buttons/ThemeToggle.astro";
+import ThemeToggle from "@/components/buttons/ThemeToggle.astro";
+import cat from "@/assets/cat.png";
 ---
 
-<nav class="flex mx-auto gap-4 w-full flex-wrap">
+<nav class="flex mx-auto gap-4 w-full flex-wrap max-w-3xl">
     <span class="flex gap-2 me-auto">
-        <span class="rounded-lg w-6 h-6 bg-red-600/50 animate-spin"></span>
+        <span class="rounded-lg size-6 shrink-0 my-auto bg-red-600/50 animate-spin overflow-clip group"
+            ><img src={cat.src} alt="cat" class="opacity-0 group-hover:opacity-100 object-cover transition-opacity duration-300 ease-out" /></span
+        >
         <h2 class="font-medium">Amin Nausin</h2>
     </span>
     <span class="flex gap-2 items-center">
-        <ExternalLink href="https://github.com/aminnausin" target="__blank">github</ExternalLink>
-        <ExternalLink href={import.meta.env.RESUME_URL} target="__blank">resume</ExternalLink>
+        <ExternalLink href="https://github.com/aminnausin" target="__blank">Github</ExternalLink>
+        <ExternalLink href={import.meta.env.RESUME_URL} target="__blank">Resume</ExternalLink>
         <ThemeToggle />
     </span>
 </nav>

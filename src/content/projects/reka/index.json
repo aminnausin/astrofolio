@@ -1,0 +1,12 @@
+{
+    "title": "Reka ",
+    "date": "Jun 2025",
+    "tech": [
+        "Go",
+        "Github Actions",
+        "Docker"
+    ],
+    "link": "https://repo-view-counter.nausin.me/?repo=aminnausin/repo-view-counter&colour=F9322C",
+    "github": "https://github.com/aminnausin/repo-view-counter",
+    "snapshot": "A lightweight backend and SVG generator for counting the number of visits to a github repo."
+}

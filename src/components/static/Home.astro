@@ -99,7 +99,7 @@ const skills = (await getEntry("skills", "index"))?.data;
         <div class="flex flex-wrap gap-2">
             {
                 Object.entries(skills ?? {}).map(([_, items]) => {
-                    return items.map((skill) => <ChipCard class="bg-white dark:bg-neutral-950 hover:ring-purple-600/50">{skill}</ChipCard>);
+                    return items.map((skill) => <ChipCard class="bg-white dark:bg-neutral-950">{skill}</ChipCard>);
                 })
             }
         </div>

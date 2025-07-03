@@ -1,16 +1,29 @@
 ---
 import type { Project } from "@/types/types";
 
+import { Image } from "astro:assets";
+
 import DescriptionItem from "@/components/lists/DescriptionItem.astro";
 import ProiconsGithub from "@/components/icons/ProiconsGithub.astro";
+import ProiconsCancel from "@/components/icons/ProiconsCancel.astro";
 import ProiconsOpen from "@/components/icons/ProiconsOpen.astro";
+import PreviewCard from "@/components/cards/PreviewCard.vue";
 import CardHeader from "@/components/static/CardHeader.astro";
 import IconLink from "@/components/buttons/IconLink.astro";
-
 import BaseCard from "@/components/cards/BaseCard.astro";
 import ChipCard from "@/components/cards/ChipCard.astro";
+import ProiconsPhoto from "../icons/ProiconsPhoto.astro";
 
-const { title, date, tech, link, description, snapshot, github } = Astro.props as Project;
+const { title, date, tech, link, description, snapshot, github, picture } = Astro.props as Project;
+
+const previewId = title?.toLowerCase().replace(/\s+/g, "-") ?? "preview";
+
+let imgSrc;
+
+if (picture) {
+    const imported = await import(`/src/content/projects/${picture}`);
+    imgSrc = imported.default;
+}
 ---
 
 <BaseCard>
@@ -19,18 +32,23 @@ const { title, date, tech, link, description, snapshot, github } = Astro.props a
             {link && <span class="recent rounded bg-green-500 size-2 inline-block animate-pulse" style="box-shadow: 0 0 4px #6cc64480;" />}
             {title ?? "Software Developer"}
             {
-                link && (
-                    <IconLink href={link} target="__blank" title="Demo">
-                        <ProiconsOpen />
-                    </IconLink>
-                )
-            }
-            {
-                github && (
-                    <IconLink href={github} target="__blank" title="Github">
-                        <ProiconsGithub />
-                    </IconLink>
-                )
+                [
+                    link && (
+                        <IconLink href={link} target="_blank" title="Demo">
+                            <ProiconsOpen />
+                        </IconLink>
+                    ),
+                    github && (
+                        <IconLink href={github} target="_blank" title="Github">
+                            <ProiconsGithub />
+                        </IconLink>
+                    ),
+                    picture && (
+                        <PreviewCard client:load {previewId}>
+                            <ProiconsPhoto />
+                        </PreviewCard>
+                    ),
+                ]
             }
         </CardHeader>
 
@@ -52,6 +70,31 @@ const { title, date, tech, link, description, snapshot, github } = Astro.props a
                     return <DescriptionItem>{entry}</DescriptionItem>;
                 })}
             </ul>
+        )
+    }
+
+    {
+        picture && (
+            <div id={previewId} class="relative transition-all duration-500 h-0 max-h-fit overflow-clip w-full ease-in-out -mt-4">
+                <Image src={imgSrc} alt={title + " preview"} class="object-contain mt-4 rounded-sm w-full" />
+                <div class="absolute top-8 right-4 flex gap-2">
+                    <a
+                        href={imgSrc.src}
+                        target="_blank"
+                        class="rounded-full p-1 size-6 flex items-center justify-center bg-white dark:bg-neutral-800 dark:hover:bg-neutral-900  shadow-sm ring ring-transparent hover:ring-purple-700/60 transition-all transition-300 hover:text-purple-700 dark:hover:text-purple-600"
+                        title="Open in new tab"
+                    >
+                        <ProiconsOpen />
+                    </a>
+                    <button
+                        id={previewId + "-close"}
+                        class="cursor-pointer rounded-full p-1 size-6 flex items-center justify-center bg-white dark:bg-neutral-800 dark:hover:bg-neutral-900  shadow-sm ring ring-transparent hover:ring-red-600 transition-all transition-300 hover:text-red-600 "
+                        title="Close"
+                    >
+                        <ProiconsCancel />
+                    </button>
+                </div>
+            </div>
         )
     }
 </BaseCard>

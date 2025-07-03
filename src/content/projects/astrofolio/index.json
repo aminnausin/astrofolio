@@ -13,5 +13,6 @@
     "order": 4,
     "link": "https://nausin.me",
     "github": "https://github.com/aminnausin/astrofolio",
-    "snapshot": "A clean, minimal portfolio with an animated 3D background, highlighting my projects and experience."
+    "snapshot": "A clean, minimal portfolio with an animated 3D background, highlighting my projects and experience.",
+    "picture": "astrofolio/preview.webp"
 }

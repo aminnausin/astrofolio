@@ -1,15 +1,158 @@
 ---
+import type { Project } from "@/types/types";
+
+import { getCollection, getEntry } from "astro:content";
+
+import ExperienceCard from "@/components/cards/ExperienceCard.astro";
+import ProfileSection from "@/components/static/ProfileSection.astro";
+import EducationCard from "@/components/cards/EducationCard.astro";
+import LastModified from "@/components/static/LastModified.astro";
+import ProjectCard from "@/components/cards/ProjectCard.astro";
+import CardHeader from "@/components/static/CardHeader.astro";
 import Background from "@/components/static/Background.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
+import BaseCard from "@/components//cards/BaseCard.astro";
+import ChipCard from "@/components/cards/ChipCard.astro";
 import Header from "@/components/static/Header.astro";
 import Layout from "@/layouts/Layout.astro";
-import Home from "@/components/static/Home.astro";
+
+const experiences = await getCollection("experiences");
+const projects = (await getCollection("projects")).sort((a: { data: Project }, b: { data: Project }) => a.data.order - b.data.order);
+const education = await getCollection("education");
+const skills = (await getEntry("skills", "index"))?.data;
 ---
 
 <Layout>
     <Background />
     <Header />
     <PageLayout>
-        <Home />
+        <header class="flex flex-col font-figtree gap-4 text-neutral-700 dark:text-neutral-200 text-base w-full">
+            <h1 class="text-4xl mb-4 text-[#111827] dark:text-white">Hi, I'm Nausin.</h1>
+            <p>I'm a final-year Computer Science student at Toronto Metropolitan University, building tools to make life easier.</p>
+
+            <p>
+                I started out building games in Unity with C#, then shifted to web development using TypeScript, Vue/React, and Laravel. During internships, I
+                developed production-grade Django/Python backends, React frontends, data scrapers, and server automation tools.
+            </p>
+
+            <p>
+                Otherwise, I enjoy <span class="italic dark:text-neutral-300 text-sm">(trying)</span> to learn the electric guitar, arial photography, and exploring
+                new parts of the city.
+            </p>
+        </header>
+
+        <div class="contents">
+            <ProfileSection title="Experience">
+                {
+                    experiences.map(({ data: exp }) => {
+                        return <ExperienceCard {...exp} />;
+                    })
+                }
+            </ProfileSection>
+
+            <ProfileSection title="Projects">
+                {
+                    projects.map(({ data: proj }) => {
+                        return <ProjectCard {...proj} />;
+                    })
+                }
+            </ProfileSection>
+
+            <ProfileSection title="Education">
+                {
+                    education.map(({ data: edu }) => {
+                        return <EducationCard {...edu} />;
+                    })
+                }
+            </ProfileSection>
+
+            <ProfileSection title="Core Technologies">
+                <BaseCard>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="flex flex-col gap-2">
+                            <CardHeader class="text-sm">Frontend</CardHeader>
+                            <ul class="space-y-1 text-neutral-800 dark:text-neutral-200">
+                                <li>Vue 3 (primary framework)</li>
+                                <li>React (work exp.)</li>
+                                <li>Astro (this site)</li>
+                                <li>TypeScript, TailwindCSS</li>
+                            </ul>
+                        </div>
+
+                        <div class="flex flex-col gap-2">
+                            <CardHeader class="text-sm">Backend</CardHeader>
+                            <ul class="space-y-1 text-neutral-800 dark:text-neutral-200">
+                                <li>Laravel (full-featured web apps)</li>
+                                <li>Python/Django RF (work exp.)</li>
+                                <li>Go (API tooling & async workers)</li>
+                                <li>ASP.NET Core, Node.js</li>
+                            </ul>
+                        </div>
+
+                        <div class="flex flex-col gap-2">
+                            <CardHeader class="text-sm">Infrastructure</CardHeader>
+                            <ul class="space-y-1 text-neutral-800 dark:text-neutral-200">
+                                <li>Docker, NGINX, Caddy</li>
+                                <li>GitHub Actions (CI/CD)</li>
+                                <li>PostgreSQL, Redis</li>
+                                <li>NixOS, Digital Ocean</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 text-sm text-neutral-600 dark:text-neutral-300">
+                        I’ve also worked with: JavaScript, PHP, Svelte, Supabase, C#, Unity, FFmpeg, WebSockets, and others — covered in project descriptions.
+                    </div>
+                </BaseCard>
+                <div class="flex flex-wrap gap-2">
+                    {
+                        Object.entries(skills ?? {}).map(([_, items]) => {
+                            return items.map((skill) => <ChipCard class="bg-white dark:bg-neutral-950">{skill}</ChipCard>);
+                        })
+                    }
+                </div>
+            </ProfileSection>
+
+            <!-- <ProfileSection title="Github">
+        <div class="flex dark:hidden w-full flex-wrap justify-center items-center">
+            <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/overview.svg#gh-light-mode-only" />
+            <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/languages.svg#gh-light-mode-only" />
+        </div>
+        <div class="hidden dark:flex w-full flex-wrap">
+            <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/overview.svg#gh-dark-mode-only" />
+            <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/languages.svg#gh-dark-mode-only" />
+        </div>
+    </ProfileSection> -->
+
+            <ProfileSection title="Activity" cla>
+                <a href="https://github.com/aminnausin" class="w-full" style="color: #6d1fff ">
+                    <img alt="github activity chart" src="https://ghchart.rshah.org/7c15c5/aminnausin" class="w-full h-auto" />
+                </a>
+            </ProfileSection>
+
+            <LastModified />
+        </div>
     </PageLayout>
 </Layout>
+
+<style>
+    pre {
+        font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+        font-weight: normal;
+        background: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 0;
+    }
+
+    code {
+        display: inline-block;
+        background:
+            linear-gradient(66.77deg, #f3cddd 0%, #f5cee7 100%) padding-box,
+            linear-gradient(155deg, #d83333 0%, #f041ff 18%, #f5cee7 45%) border-box;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        padding: 6px 8px;
+    }
+</style>

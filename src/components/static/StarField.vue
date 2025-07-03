@@ -77,14 +77,14 @@ const initStarfield = () => {
 
     const { group: marsGroup, update: updateMarsMoons } = generateBodyWithMoons(new THREE.Color(0xcc5500).multiplyScalar(4), 2, 2);
     const { group: jupiterGroup, update: updateJupiterMoons } = generateBodyWithMoons(new THREE.Color(0xd8b384).multiplyScalar(3.5), 4, 3);
-    const uranus = generateBodyWithRings(new THREE.Color(0x66ffff).multiplyScalar(2.5), 2, 2, 0.4, 0x88aaff);
-    const saturn = generateBodyWithRings(new THREE.Color(0xf1c27d).multiplyScalar(3.8), 2, 1, 0.3, 0xffffff);
+    // const uranus = generateBodyWithRings(new THREE.Color(0x66ffff).multiplyScalar(2.5), 2, 2, 0.4, 0x88aaff);
+    // const saturn = generateBodyWithRings(new THREE.Color(0xf1c27d).multiplyScalar(3.8), 2, 1, 0.3, 0xffffff);
     const stars = new THREE.Points(starsGeometry, starMaterial.value);
 
     stars.add(marsGroup);
     stars.add(jupiterGroup);
-    stars.add(uranus);
-    stars.add(saturn);
+    // stars.add(uranus);
+    // stars.add(saturn);
     scene.add(stars);
 
     function animateScene() {

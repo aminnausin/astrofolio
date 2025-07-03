@@ -6,23 +6,29 @@ import { Image } from "astro:assets";
 import DescriptionItem from "@/components/lists/DescriptionItem.astro";
 import ProiconsGithub from "@/components/icons/ProiconsGithub.astro";
 import ProiconsCancel from "@/components/icons/ProiconsCancel.astro";
+import ProiconsPhoto from "@/components/icons/ProiconsPhoto.astro";
 import ProiconsOpen from "@/components/icons/ProiconsOpen.astro";
 import PreviewCard from "@/components/cards/PreviewCard.vue";
 import CardHeader from "@/components/static/CardHeader.astro";
 import IconLink from "@/components/buttons/IconLink.astro";
 import BaseCard from "@/components/cards/BaseCard.astro";
 import ChipCard from "@/components/cards/ChipCard.astro";
-import ProiconsPhoto from "../icons/ProiconsPhoto.astro";
 
 const { title, date, tech, link, description, snapshot, github, picture } = Astro.props as Project;
 
 const previewId = title?.toLowerCase().replace(/\s+/g, "-") ?? "preview";
 
+const images: Record<string, { default: ImageMetadata }> = import.meta.glob("/src/content/projects/**/*.{png,webp,gif}", { eager: true });
+
 let imgSrc;
 
 if (picture) {
-    const imported = await import(`/src/content/projects/${picture}`);
-    imgSrc = imported.default;
+    for (const path in images) {
+        if (path.endsWith(picture)) {
+            imgSrc = images[path].default;
+            break;
+        }
+    }
 }
 ---
 
@@ -43,7 +49,7 @@ if (picture) {
                             <ProiconsGithub />
                         </IconLink>
                     ),
-                    picture && (
+                    picture && imgSrc && (
                         <PreviewCard client:load {previewId}>
                             <ProiconsPhoto />
                         </PreviewCard>
@@ -74,7 +80,7 @@ if (picture) {
     }
 
     {
-        picture && (
+        picture && imgSrc && (
             <div id={previewId} class="relative transition-all duration-500 h-0 max-h-fit overflow-clip w-full ease-in-out -mt-4">
                 <Image src={imgSrc} alt={title + " preview"} class="object-contain mt-4 rounded-sm w-full" />
                 <div class="absolute top-8 right-4 flex gap-2">

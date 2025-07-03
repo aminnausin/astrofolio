@@ -28,17 +28,13 @@ const skills = (await getEntry("skills", "index"))?.data;
     <PageLayout>
         <header class="flex flex-col font-figtree gap-4 text-neutral-700 dark:text-neutral-200 text-base w-full">
             <h1 class="text-4xl mb-4 text-[#111827] dark:text-white">Hi, I'm Nausin.</h1>
-            <p>I'm a final-year Computer Science student at Toronto Metropolitan University, building tools to make life easier.</p>
 
             <p>
-                I started out building games in Unity with C#, then shifted to web development using TypeScript, Vue/React, and Laravel. During internships, I
-                developed production-grade Django/Python backends, React frontends, data scrapers, and server automation tools.
+                Full stack developer and final-year CS student from <span class="font-medium text-purple-700 dark:text-purple-500">Toronto, ON,</span> focused on
+                building long-lived, maintainable systems with clear architecture, thoughtful design and solid foundations.
             </p>
 
-            <p>
-                Otherwise, I enjoy <span class="italic dark:text-neutral-300 text-sm">(trying)</span> to learn the electric guitar, arial photography, and exploring
-                new parts of the city.
-            </p>
+            <p>I work primarily with Vue.js, Laravel, Go, and TailwindCSS, with recent experience in React, Express, and Django.</p>
         </header>
 
         <div class="contents">
@@ -72,9 +68,9 @@ const skills = (await getEntry("skills", "index"))?.data;
                         <div class="flex flex-col gap-2">
                             <CardHeader class="text-sm">Frontend</CardHeader>
                             <ul class="space-y-1 text-neutral-800 dark:text-neutral-200">
-                                <li>Vue 3 (primary framework)</li>
+                                <li>Vue 3 (projects)</li>
                                 <li>React (work exp.)</li>
-                                <li>Astro (this site)</li>
+                                <li>Svelte, Astro</li>
                                 <li>TypeScript, TailwindCSS</li>
                             </ul>
                         </div>
@@ -82,9 +78,9 @@ const skills = (await getEntry("skills", "index"))?.data;
                         <div class="flex flex-col gap-2">
                             <CardHeader class="text-sm">Backend</CardHeader>
                             <ul class="space-y-1 text-neutral-800 dark:text-neutral-200">
-                                <li>Laravel (full-featured web apps)</li>
+                                <li>Laravel</li>
+                                <li>Go (API Services)</li>
                                 <li>Python/Django RF (work exp.)</li>
-                                <li>Go (API tooling & async workers)</li>
                                 <li>ASP.NET Core, Node.js</li>
                             </ul>
                         </div>
@@ -101,7 +97,7 @@ const skills = (await getEntry("skills", "index"))?.data;
                     </div>
 
                     <div class="mt-8 text-sm text-neutral-600 dark:text-neutral-300">
-                        I’ve also worked with: JavaScript, PHP, Svelte, Supabase, C#, Unity, FFmpeg, WebSockets, and others — covered in project descriptions.
+                        I’ve also worked with: JavaScript, PHP, Supabase, C#, Unity, FFmpeg, WebSockets, and others — covered in project descriptions.
                     </div>
                 </BaseCard>
                 <div class="flex flex-wrap gap-2">
@@ -124,7 +120,7 @@ const skills = (await getEntry("skills", "index"))?.data;
         </div>
     </ProfileSection> -->
 
-            <ProfileSection title="Activity" cla>
+            <ProfileSection title="Activity">
                 <a href="https://github.com/aminnausin" class="w-full" style="color: #6d1fff ">
                     <img alt="github activity chart" src="https://ghchart.rshah.org/7c15c5/aminnausin" class="w-full h-auto" />
                 </a>

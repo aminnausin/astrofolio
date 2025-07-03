@@ -9,6 +9,7 @@ const experiences = defineCollection({
         endDate: z.string(),
         location: z.string(),
         skills: z.array(z.string()).optional(),
+        snapshot: z.string().optional(),
         description: z.array(z.string()).optional(),
     }),
 });

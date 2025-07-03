@@ -27,10 +27,12 @@ const skills = (await getEntry("skills", "index"))?.data;
     <Header />
     <PageLayout>
         <header class="flex flex-col font-figtree gap-4 text-neutral-700 dark:text-neutral-200 text-base w-full">
-            <h1 class="text-4xl mb-4 text-[#111827] dark:text-white">Hi, I'm Nausin.</h1>
+            <h1 class="text-4xl mb-4 text-[#111827] dark:text-white">
+                Hi, I'm <a class="font-medium hover:text-purple-700 hover:dark:text-purple-600 transition-colors" href="mailto:aminnausin@gmail.com">Nausin</a>.
+            </h1>
 
             <p>
-                Full stack developer and final-year CS student from <span class="font-medium text-purple-700 dark:text-purple-500">Toronto, ON,</span> focused on
+                Full-Stack developer and final-year CS student from <span class="font-medium text-purple-700 dark:text-purple-500">Toronto, ON,</span> focused on
                 building long-lived, maintainable systems with clear architecture, thoughtful design and solid foundations.
             </p>
 

@@ -5,6 +5,7 @@ export interface Experience {
     endDate: string;
     location: string;
     skills?: string[];
+    snapshot?: string;
     description?: string[];
 }
 

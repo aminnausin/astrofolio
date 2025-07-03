@@ -6,7 +6,7 @@ import CardHeader from "@/components/static/CardHeader.astro";
 import ChipCard from "@/components/cards//ChipCard.astro";
 import BaseCard from "@/components/cards/BaseCard.astro";
 
-const { title, company, startDate, endDate, location, skills, description } = Astro.props as Experience;
+const { title, company, startDate, endDate, location, skills, description, snapshot } = Astro.props as Experience;
 ---
 
 <BaseCard>
@@ -15,23 +15,21 @@ const { title, company, startDate, endDate, location, skills, description } = As
 
         <p class="text-neutral-700 dark:text-neutral-300">{startDate ?? "Sep 2022"} - {endDate ?? "Aug 2023"}</p>
 
-        <section class="flex flex-col gap-1 w-full">
-            <p class="text-neutral-700 dark:text-neutral-300 me-auto">{company ?? "Environment and Climate Change Canada"} | {location ?? "Toronto, ON"}</p>
+        <p class="text-neutral-700 dark:text-neutral-300 me-auto">{company ?? "Environment and Climate Change Canada"} | {location ?? "Toronto, ON"}</p>
 
-            {
-                skills && skills.length > 0 && (
-                    <div class="flex flex-wrap gap-2">
-                        {skills?.map((skill) => {
-                            return <ChipCard key>{skill}</ChipCard>;
-                        })}
-                    </div>
-                )
-            }
-        </section>
+        {
+            skills && skills.length > 0 && (
+                <div class="flex flex-wrap gap-2">
+                    {skills?.map((skill) => {
+                        return <ChipCard key>{skill}</ChipCard>;
+                    })}
+                </div>
+            )
+        }
     </header>
-
+    {snapshot && <p>{snapshot}</p>}
     {
-        description && description.length > 0 && (
+        !snapshot && description && description.length > 0 && (
             <ul class="font-figtree">
                 {description.map((entry) => {
                     return <DescriptionItem>{entry}</DescriptionItem>;

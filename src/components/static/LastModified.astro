@@ -1,14 +1,8 @@
 ---
-const rawDate = import.meta.env.PUBLIC_LAST_MODIFIED ? new Date(import.meta.env.PUBLIC_LAST_MODIFIED) : new Date();
+const publicLastModified = import.meta.env.PUBLIC_LAST_MODIFIED;
+const rawDate = new Date(publicLastModified ?? Date.now());
 
-const now = new Date();
-const yesterday = new Date(now.getDate() - 1);
-
-let formattedDate = rawDate.toDateString() === now.toDateString() ? "Today" : "";
-
-if (rawDate.toDateString() === yesterday.toDateString()) formattedDate = "Yesterday";
-
-let formattedRawDate = rawDate.toLocaleString(undefined, {
+let formattedDate = rawDate.toLocaleString(undefined, {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
@@ -18,9 +12,18 @@ let formattedRawDate = rawDate.toLocaleString(undefined, {
     timeZoneName: "short",
 });
 
-let lastModified = formattedDate || formattedRawDate;
+/**
+ * Checks if a date string is within 24 hours of the current time.
+ *
+ * @param date Raw date string.
+ */
+function within24Hrs(then: Date): boolean {
+    return Date.now() - then.getTime() < 24 * 1000 * 60 * 60;
+}
+
+let lastModified = within24Hrs(rawDate) ? "Today" : formattedDate;
 ---
 
-<p class="text-[#4b5563] dark:text-neutral-200" title={formattedRawDate}>
+<p class="text-[#4b5563] dark:text-neutral-200" title={formattedDate}>
     Last Modified: {lastModified}
 </p>

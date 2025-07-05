@@ -4,8 +4,11 @@
     "date": "Jun 2025",
     "tech": [
         "Go",
+        "SVG",
+        "CSS",
         "GraphQL",
-        "Github Actions"
+        "Github Actions",
+        "Github API"
     ],
     "github": "https://github.com/aminnausin/snapshot/",
     "snapshot": "A Github statistics Snapshot generator for your profile based on your contributions to public and private repositories."

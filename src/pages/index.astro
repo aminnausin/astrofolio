@@ -11,10 +11,20 @@ import ProjectCard from "@/components/cards/ProjectCard.astro";
 import CardHeader from "@/components/static/CardHeader.astro";
 import Background from "@/components/static/Background.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
-import BaseCard from "@/components//cards/BaseCard.astro";
+import BaseCard from "@/components/cards/BaseCard.astro";
 import ChipCard from "@/components/cards/ChipCard.astro";
+import IconCard from "@/components/cards/IconCard.astro";
 import Header from "@/components/static/Header.astro";
 import Layout from "@/layouts/Layout.astro";
+
+import GithubActions from "@/components/icons/GithubActions.astro";
+import Tailwindcss from "@/components/icons/Tailwindcss.astro";
+import Typescript from "@/components/icons/Typescript.astro";
+import Laravel from "@/components/icons/Laravel.astro";
+import Django from "@/components/icons/Django.astro";
+import Docker from "@/components/icons/Docker.astro";
+import React from "@/components/icons/React.astro";
+import Vue from "@/components/icons/Vue.astro";
 
 const experiences = await getCollection("experiences");
 const projects = (await getCollection("projects")).sort((a: { data: Project }, b: { data: Project }) => a.data.order - b.data.order);
@@ -28,7 +38,7 @@ const skills = (await getEntry("skills", "index"))?.data;
     <PageLayout>
         <header class="flex flex-col font-figtree gap-4 text-neutral-700 dark:text-neutral-200 text-base w-full">
             <h1 class="text-4xl mb-4 text-[#111827] dark:text-white">
-                Hi, I'm <a class="font-medium hover:text-purple-700 hover:dark:text-purple-600 transition-colors" href="mailto:aminnausin@gmail.com">Nausin</a>.
+                Hi, I'm <a class="font-medium hover:text-purple-700 hover:dark:text-purple-500 transition-colors" href="mailto:aminnausin@gmail.com">Nausin</a>.
             </h1>
 
             <p>
@@ -36,7 +46,49 @@ const skills = (await getEntry("skills", "index"))?.data;
                 building long-lived, maintainable systems with clear architecture, thoughtful design and solid foundations.
             </p>
 
-            <p>I currently work with Vue.js, Laravel, Go, and Tailwind, with recent experience in Django REST Framework, React, and Express.</p>
+            <p>
+                I am currently working with <span class="font-medium hover:text-purple-700 hover:dark:text-purple-500 transition-colors">
+                    Vue.js, Laravel, Go, and Tailwind,
+                </span>
+                with recent experience in <span class="font-medium hover:text-purple-700 hover:dark:text-purple-500 transition-colors"
+                    >Django REST Framework, React, and Express.</span
+                >
+            </p>
+
+            <span class="fill-[#111827] dark:fill-white flex gap-4 flex-wrap text-sm">
+                <IconCard title="Laravel (PHP Full-Stack Framework)">
+                    <Laravel />
+                    Laravel
+                </IconCard>
+                <IconCard title="Vue (Frontend Framework)">
+                    <Vue />
+                    Vue
+                </IconCard>
+                <IconCard title="Django (Python Full-Stack Framework)">
+                    <Django />
+                    Django
+                </IconCard>
+                <IconCard title="React (Frontend Framework)">
+                    <React />
+                    React
+                </IconCard>
+                <IconCard title="TypeScript (Full-Stack Language)">
+                    <Typescript />
+                    TypeScript
+                </IconCard>
+                <IconCard title="Tailwind (Frontend Framework)">
+                    <Tailwindcss />
+                    Tailwind
+                </IconCard>
+                <IconCard title="GitHub Actions (CI/CD Platform)">
+                    <GithubActions />
+                    CI/CD
+                </IconCard>
+                <IconCard title="Docker (Container Platform)">
+                    <Docker />
+                    Docker
+                </IconCard>
+            </span>
         </header>
 
         <div class="contents">

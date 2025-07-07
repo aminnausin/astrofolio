@@ -25,6 +25,7 @@ import Django from "@/components/icons/Django.astro";
 import Docker from "@/components/icons/Docker.astro";
 import React from "@/components/icons/React.astro";
 import Vue from "@/components/icons/Vue.astro";
+import Go from "@/components/icons/Go.astro";
 
 const experiences = await getCollection("experiences");
 const projects = (await getCollection("projects")).sort((a: { data: Project }, b: { data: Project }) => a.data.order - b.data.order);
@@ -36,7 +37,7 @@ const skills = (await getEntry("skills", "index"))?.data;
     <Background />
     <Header />
     <PageLayout>
-        <header class="flex flex-col font-figtree gap-4 text-neutral-700 dark:text-neutral-200 text-base w-full">
+        <header class="flex flex-col font-figtree gap-4 text-neutral-700 dark:text-neutral-200 text-base w-full overflow-clip">
             <h1 class="text-4xl mb-4 text-[#111827] dark:text-white">
                 Hi, I'm <a class="font-medium hover:text-purple-700 hover:dark:text-purple-500 transition-colors" href="mailto:aminnausin@gmail.com">Nausin</a>.
             </h1>
@@ -46,7 +47,7 @@ const skills = (await getEntry("skills", "index"))?.data;
                 building long-lived, maintainable systems with clear architecture, thoughtful design and solid foundations.
             </p>
 
-            <p>
+            <p class="peer">
                 I am currently working with <span class="font-medium hover:text-purple-700 hover:dark:text-purple-500 transition-colors">
                     Vue.js, Laravel, Go, and Tailwind,
                 </span>
@@ -55,7 +56,9 @@ const skills = (await getEntry("skills", "index"))?.data;
                 >
             </p>
 
-            <span class="fill-[#111827] dark:fill-white flex gap-4 flex-wrap text-sm">
+            <!-- <div
+                class="fill-[#111827] dark:fill-white flex gap-4 text-sm h-0 peer-hover:h-12 hover:h-12 -mt-4 peer-hover:mt-0 hover:mt-0 transition-all duration-500 scrollbar-minimal overflow-x-auto overflow-y-clip peer-hover:pb-1 hover:pb-1"
+            >
                 <IconCard title="Laravel (PHP Full-Stack Framework)">
                     <Laravel />
                     Laravel
@@ -76,6 +79,10 @@ const skills = (await getEntry("skills", "index"))?.data;
                     <Typescript />
                     TypeScript
                 </IconCard>
+                <IconCard title="Go/Golang (Backend Language)">
+                    <Go />
+                    Go
+                </IconCard>
                 <IconCard title="Tailwind (Frontend Framework)">
                     <Tailwindcss />
                     Tailwind
@@ -88,7 +95,7 @@ const skills = (await getEntry("skills", "index"))?.data;
                     <Docker />
                     Docker
                 </IconCard>
-            </span>
+            </div> -->
         </header>
 
         <div class="contents">

@@ -11,5 +11,6 @@
         "Github API"
     ],
     "github": "https://github.com/aminnausin/snapshot/",
-    "snapshot": "A Github statistics Snapshot generator for your profile based on your contributions to public and private repositories."
+    "snapshot": "A Github statistics Snapshot generator for your profile based on your contributions to public and private repositories.",
+    "picture": "snapshot/preview.gif"
 }

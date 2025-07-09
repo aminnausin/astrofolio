@@ -10,5 +10,6 @@
     ],
     "link": "https://airport-webcam.vercel.app/",
     "github": "https://github.com/aminnausin/AirportWebcam",
-    "snapshot": "A combined Webcam, Radio and Arrival/Departures board for YUL (Montréal International Airport) based on their old UI. The radio and airline images no longer work as their sources are now private. The webcam occasionally comes online. "
+    "snapshot": "A combined Webcam, Radio and Arrival/Departures board for YUL (Montréal International Airport) based on their old UI. The radio and airline images no longer work as their sources are now private. The webcam occasionally comes online.",
+    "picture": "airport-webcam/preview.webp"
 }

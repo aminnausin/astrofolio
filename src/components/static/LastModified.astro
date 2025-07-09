@@ -24,6 +24,11 @@ function within24Hrs(then: Date): boolean {
 let lastModified = within24Hrs(rawDate) ? "Today" : formattedDate;
 ---
 
-<p class="text-[#4b5563] dark:text-neutral-200" title={formattedDate}>
-    Last Modified: {lastModified}
-</p>
+<pre
+    class="text-[#4b5563] dark:text-neutral-200"
+    title={formattedDate}
+    data-raw={rawDate}
+    data-public={publicLastModified}
+    data-last-modified={lastModified}>
+    Last Modified: {formattedDate}
+</pre>

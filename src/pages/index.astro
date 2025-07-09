@@ -48,12 +48,12 @@ const skills = (await getEntry("skills", "index"))?.data;
             </p>
 
             <p class="peer">
-                I am currently working with <span class="font-medium hover:text-purple-700 hover:dark:text-purple-500 transition-colors">
+                I am currently working with <a class="font-medium hover:text-purple-700 hover:dark:text-purple-500 transition-colors" href="#tech">
                     Vue.js, Laravel, Go, and Tailwind,
-                </span>
-                with recent experience in <span class="font-medium hover:text-purple-700 hover:dark:text-purple-500 transition-colors"
-                    >Django REST Framework, React, and Express.</span
-                >
+                </a>
+                with recent experience in <a class="font-medium hover:text-purple-700 hover:dark:text-purple-500 transition-colors" href="#tech">
+                    Django REST Framework, React, and Express.
+                </a>
             </p>
 
             <!-- <div
@@ -123,7 +123,7 @@ const skills = (await getEntry("skills", "index"))?.data;
                 }
             </ProfileSection>
 
-            <ProfileSection title="Core Technologies">
+            <ProfileSection title="Core Technologies" id="tech">
                 <BaseCard>
                     <div class="grid md:grid-cols-3 gap-6">
                         <div class="flex flex-col gap-2">

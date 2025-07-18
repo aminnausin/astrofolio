@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Quicksand:wght@300..700&display=swap");
-
 @import "tailwindcss";
 
 @custom-variant hocus (&:hover, &:focus);
@@ -10,9 +8,9 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --font-quicksand: "Quicksand", "sans-serif";
-    --font-rubik: "Rubik", "sans-serif";
-    --font-figtree: "Figtree", "sans-serif";
+    --font-quicksand: "Quicksand", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-rubik: "Rubik", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-figtree: "Figtree", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 /* === Scrollbar Utilities === */
 @layer utilities {

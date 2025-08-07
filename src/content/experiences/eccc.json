@@ -15,7 +15,7 @@
         "Windows Server"
     ],
     "snapshotx": "Built backend services and UI for a laboratory system (CLIMS), improving reliability and enabling better data sharing across departments. Modernised legacy Delphi tools by porting features to the new platform, reducing maintenance overhead and simplifying daily use. Designed and implemented a custom Excel-style keyboard navigation system that significantly improved data entry speed for lab staff. ",
-    "snapshot": "Built backend services for CLIMS (laboratory system), improving reliability and enabling better cross-team data sharing. Rebuilt legacy UIs into what was effectively a single-page app using jQuery, improving usability without modern frameworks. Designed an Excel-style keyboard navigation system to triple data entry speed for researchers. Also handled automation scripts, internal docs, and occasional server maintenance",
+    "snapshot": "Built backend services for CLIMS (laboratory system), improving reliability and enabling better cross-team data sharing. Rebuilt legacy UIs into what was effectively a single-page app using jQuery, improving usability without modern frameworks. Designed an Excel-style keyboard navigation system to triple data entry speed for researchers. Also handled automation scripts, internal docs, and occasional server maintenance.",
     "description": [
         "Devised 3+ backend services for CLIMS in PHP, Python, and MSSQL, revamping system reliability and cross-team data sharing.",
         "Modernised legacy Delphi applications by migrating features to PHP / JS, reducing technical debt and amplifying maintainability.",

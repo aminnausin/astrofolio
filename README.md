@@ -1,5 +1,11 @@
 # Amin Nausin – Portfolio
 
+<p  align="left">
+    <img src="https://img.shields.io/github/package-json/v/aminnausin/astrofolio?color=white&logo=docker&logoColor=white" alt="version"/>
+    <a href="https://demo.mediaserver.nausin.me"><img src="https://img.shields.io/website?url=https%3A%2F%2Fdemo.mediaserver.nausin.me&up_color=purple&down_color=F9322C&label=Build&link=https%3A%2F%2Fnausin.me&logo=digitalocean&logoColor=white" alt="Build Status"></a>
+    <img src="https://repo-view-counter.nausin.me/?repo=aminnausin/astrofolio&colour=F9322C&label=views" alt="Repo View Counter">
+</p>
+
 A stylised personal portfolio site built with [Astro](https://astro.build/), [Vue 3](https://vuejs.org/), and [Tailwind CSS](https://tailwindcss.com/).  
 It showcases projects, experiences, and skills with dynamic visuals, including a starfield background rendered using [Three.js](https://threejs.org/).
 
@@ -47,7 +53,8 @@ Structure of my portfolio:
 - **Dark/light theme toggle** with animated transitions
 - **Responsive** layout with Tailwind CSS
 - **Dockerised** for easy deployment (Nginx/Alpine-based)
-- **CI/CD via GitHub Actions** with automatic Docker Hub publishing and Versioning
+- **CI via GitHub Actions** with automatic Docker Hub publishing and versioning
+- **CD via [watchtower](https://github.com/containrrr/watchtower)** with auto deployment to Digital Ocean
 
 ### Tech Stack
 

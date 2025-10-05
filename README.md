@@ -2,7 +2,7 @@
 
 <p  align="left">
     <img src="https://img.shields.io/github/package-json/v/aminnausin/astrofolio?color=white&logo=docker&logoColor=white" alt="version"/>
-    <a href="https://demo.mediaserver.nausin.me"><img src="https://img.shields.io/website?url=https%3A%2F%2Fdemo.mediaserver.nausin.me&up_color=purple&down_color=F9322C&label=Build&link=https%3A%2F%2Fnausin.me&logo=digitalocean&logoColor=white" alt="Build Status"></a>
+    <a href="https://nausin.me"><img src="https://img.shields.io/website?url=https%3A%2F%2Fnausin.me&up_color=purple&down_color=F9322C&label=Build&link=https%3A%2F%2Fnausin.me&logo=digitalocean&logoColor=white" alt="Build Status"></a>
     <img src="https://repo-view-counter.nausin.me/?repo=aminnausin/astrofolio&colour=F9322C&label=views" alt="Repo View Counter">
 </p>
 

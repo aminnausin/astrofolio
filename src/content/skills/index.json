@@ -3,6 +3,7 @@
         "Vue.js",
         "React",
         "Astro",
+        "Next.js",
         "TailwindCSS"
     ],
     "Backend": [

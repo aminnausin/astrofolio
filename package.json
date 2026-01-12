@@ -1,7 +1,7 @@
 {
   "name": "astrofolio",
   "type": "module",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "scripts": {
     "dev": "astro dev",
     "type-check": "astro check && vue-tsc --noEmit",

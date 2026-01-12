@@ -11,6 +11,7 @@ const experiences = defineCollection({
         skills: z.array(z.string()).optional(),
         snapshot: z.string().optional(),
         description: z.array(z.string()).optional(),
+        forceDescription: z.boolean().optional(),
     }),
 });
 

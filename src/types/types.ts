@@ -7,6 +7,7 @@ export interface Experience {
     skills?: string[];
     snapshot?: string;
     description?: string[];
+    forceDescription?: boolean;
 }
 
 export interface Project {

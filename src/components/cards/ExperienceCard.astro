@@ -6,7 +6,7 @@ import CardHeader from "@/components/static/CardHeader.astro";
 import ChipCard from "@/components/cards//ChipCard.astro";
 import BaseCard from "@/components/cards/BaseCard.astro";
 
-const { title, company, startDate, endDate, location, skills, description, snapshot } = Astro.props as Experience;
+const { title, company, startDate, endDate, location, skills, description, snapshot, forceDescription } = Astro.props as Experience;
 ---
 
 <BaseCard>
@@ -27,9 +27,9 @@ const { title, company, startDate, endDate, location, skills, description, snaps
             )
         }
     </header>
-    {snapshot && <p>{snapshot}</p>}
+    {snapshot && <p class="whitespace-pre-line">{snapshot}</p>}
     {
-        !snapshot && description && description.length > 0 && (
+        (!snapshot || forceDescription) && description && description.length > 0 && (
             <ul class="font-figtree">
                 {description.map((entry) => {
                     return <DescriptionItem>{entry}</DescriptionItem>;

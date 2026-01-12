@@ -2,7 +2,7 @@
 const { title, id } = Astro.props;
 ---
 
-<section class="gap-4 flex flex-col w-full">
+<section class={[`gap-4 flex flex-col w-full`, Astro.props?.class].join(" ")}>
     <h2 class="text-2xl font-figtree" id={id ?? title.toLocaleLowerCase()}>{title}</h2>
     <slot />
 </section>

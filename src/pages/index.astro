@@ -71,15 +71,13 @@ const skills = (await getEntry("skills", "index"))?.data;
                 }
             </ProfileSection>
 
-            <ProfileSection title="Core Technologies" id="tech">
+            <ProfileSection title="What I Build With" id="tech">
                 <BaseCard>
                     <div class="grid md:grid-cols-3 gap-6">
                         <div class="flex flex-col gap-2">
                             <CardHeader class="text-sm">Frontend</CardHeader>
                             <ul class="space-y-1 text-neutral-800 dark:text-neutral-200">
-                                <li>Vue 3 (projects)</li>
-                                <li>React (work exp.)</li>
-                                <li>Svelte, Astro</li>
+                                <li>React, Vue 3</li>
                                 <li>TypeScript, TailwindCSS</li>
                             </ul>
                         </div>
@@ -88,25 +86,24 @@ const skills = (await getEntry("skills", "index"))?.data;
                             <CardHeader class="text-sm">Backend</CardHeader>
                             <ul class="space-y-1 text-neutral-800 dark:text-neutral-200">
                                 <li>Laravel</li>
-                                <li>Go (API Services)</li>
-                                <li>Python/Django RF (work exp.)</li>
-                                <li>ASP.NET Core, Node.js</li>
+                                <li>Django REST Framework</li>
+                                <li>PHP, Python, Go, Node.js</li>
+                                <li>PostgreSQL, Redis</li>
                             </ul>
                         </div>
 
                         <div class="flex flex-col gap-2">
                             <CardHeader class="text-sm">Infrastructure</CardHeader>
                             <ul class="space-y-1 text-neutral-800 dark:text-neutral-200">
+                                <li>GitHub Actions CI/CD</li>
                                 <li>Docker, NGINX, Caddy</li>
-                                <li>GitHub Actions (CI/CD)</li>
-                                <li>PostgreSQL, Redis</li>
-                                <li>NixOS, Digital Ocean</li>
+                                <li>Linux (NixOS, Debian), DigitalOcean</li>
                             </ul>
                         </div>
                     </div>
 
-                    <div class="mt-8 text-sm text-neutral-600 dark:text-neutral-300">
-                        I’ve also worked with: JavaScript, PHP, Supabase, C#, Unity, FFmpeg, WebSockets, and others — covered in project descriptions.
+                    <div class="mt-4 text-neutral-600 dark:text-neutral-300">
+                        Additional technologies appear throughout project implementations, including Svelte, Astro, Supabase, C#, Unity, FFmpeg, and WebSockets.
                     </div>
                 </BaseCard>
                 <div class="flex flex-wrap gap-2">
@@ -118,18 +115,18 @@ const skills = (await getEntry("skills", "index"))?.data;
                 </div>
             </ProfileSection>
 
-            <!-- <ProfileSection title="Github">
-        <div class="flex dark:hidden w-full flex-wrap justify-center items-center">
-            <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/overview.svg#gh-light-mode-only" />
-            <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/languages.svg#gh-light-mode-only" />
-        </div>
-        <div class="hidden dark:flex w-full flex-wrap">
-            <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/overview.svg#gh-dark-mode-only" />
-            <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/languages.svg#gh-dark-mode-only" />
-        </div>
-    </ProfileSection> -->
+            <ProfileSection title="Github" class={"hidden"}>
+                <div class="flex dark:hidden w-full flex-wrap justify-center items-center">
+                    <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/overview.svg#gh-light-mode-only" />
+                    <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/languages.svg#gh-light-mode-only" />
+                </div>
+                <div class="hidden dark:flex w-full flex-wrap">
+                    <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/overview.svg#gh-dark-mode-only" />
+                    <img class="flex-1" src="https://raw.githubusercontent.com/aminnausin/snapshot/main/generated/languages.svg#gh-dark-mode-only" />
+                </div>
+            </ProfileSection>
 
-            <ProfileSection title="Activity">
+            <ProfileSection title="Github Activity">
                 <a href="https://github.com/aminnausin" class="w-full" style="color: #6d1fff ">
                     <img alt="github activity chart" src="https://ghchart.rshah.org/7c15c5/aminnausin" class="w-full h-auto" />
                 </a>

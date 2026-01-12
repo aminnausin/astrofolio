@@ -9,14 +9,21 @@
         "React",
         "Python",
         "Django",
+        "Linux",
+        "GitHub Actions",
         "SQLite",
-        "GitHub CI/CD",
         "AWS Cloudfront",
-        "Bash",
         "Jira"
     ],
-    "snapshot": "Took over a partially built property management platform and launched a stable MVP with a clean, performant backend and responsive UI. Built CMS tools for admins and added booking, real-time messaging and rental application features. Mentored two junior devs through Jira sprints, code reviews and pair programming.",
+    "snapshot": "Completed and launched a full-stack property management platform using React (TypeScript) and Django REST Framework, taking ownership of a partially built system and delivering a stable, maintainable MVP.",
     "description": [
+        "Refactored legacy Django services, improved API performance, and reduced technical debt across backend systems, cutting redundant code by ~40% and API complexity by ~60%",
+        "Built internal CMS tooling and implemented booking, messaging, and rental application features supporting 20+ properties and 50+ users.",
+        "Introduced Scrum planning and task delegation, and mentored two junior interns through code reviews and pair programming."
+    ],
+    "forceDescription": true,
+    "snapshot2": "Assumed ownership of a partially built full-stack property management platform based on React and Django REST Framework, delivering a stable MVP within two months and significantly improving codebase maintainability.",
+    "description2": [
         "Took over a partially built property management platform and led it to a successful MVP launch with a maintainable, cohesive codebase.",
         "Refactored legacy Django logic, improved API performance, and reduced tech debt across backend services.",
         "Built a responsive React + Tailwind dashboard managing 20+ properties and 50+ users, with CMS tools for admins and staff.",

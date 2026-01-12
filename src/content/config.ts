@@ -3,6 +3,7 @@ import { defineCollection, z } from "astro:content";
 const experiences = defineCollection({
     type: "data",
     schema: z.object({
+        order: z.number().nonnegative().default(Infinity),
         title: z.string(),
         company: z.string(),
         startDate: z.string(),

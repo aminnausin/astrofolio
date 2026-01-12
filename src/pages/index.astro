@@ -1,5 +1,5 @@
 ---
-import type { Project } from "@/types/types";
+import type { Experience, Project } from "@/types/types";
 
 import { getCollection, getEntry } from "astro:content";
 
@@ -16,7 +16,7 @@ import ChipCard from "@/components/cards/ChipCard.astro";
 import Header from "@/components/static/Header.astro";
 import Layout from "@/layouts/Layout.astro";
 
-const experiences = await getCollection("experiences");
+const experiences = (await getCollection("experiences")).sort((a: { data: Experience }, b: { data: Experience }) => a.data.order - b.data.order);
 const projects = (await getCollection("projects")).sort((a: { data: Project }, b: { data: Project }) => a.data.order - b.data.order);
 const education = await getCollection("education");
 const skills = (await getEntry("skills", "index"))?.data;
@@ -79,6 +79,16 @@ const skills = (await getEntry("skills", "index"))?.data;
                             <ul class="space-y-1 text-neutral-800 dark:text-neutral-200">
                                 <li>React, Vue 3</li>
                                 <li>TypeScript, TailwindCSS</li>
+                                <li>
+                                    <a
+                                        href="https://cedar-ui.nausin.me/"
+                                        class="text-[#111827] dark:text-white font-medium hover:text-purple-700 hover:dark:text-purple-500 transition-colors"
+                                        title="Custom Built"
+                                    >
+                                        Cedar-UI
+                                    </a>
+                                    , Shadcn
+                                </li>
                             </ul>
                         </div>
 

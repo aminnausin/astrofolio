@@ -1,4 +1,5 @@
 export interface Experience {
+    order: number;
     title: string;
     company: string;
     startDate: string;

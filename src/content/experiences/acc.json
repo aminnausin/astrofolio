@@ -1,4 +1,5 @@
 {
+    "order": 1,
     "title": "Full-Stack Software Developer (intern)",
     "company": "Aisha Comfortable Coliving",
     "location": "Toronto, ON",
@@ -18,7 +19,7 @@
     "snapshot": "Completed and launched a full-stack property management platform using React (TypeScript) and Django REST Framework, taking ownership of a partially built system and delivering a stable, maintainable MVP.",
     "description": [
         "Refactored legacy Django services, improved API performance, and reduced technical debt across backend systems, cutting redundant code by ~40% and API complexity by ~60%",
-        "Built internal CMS tooling and implemented booking, messaging, and rental application features supporting 20+ properties and 50+ users.",
+        "Built internal CMS tooling, real-time messaging, property booking, and rental application features to extend platform capabilities for staff and customers.",
         "Introduced Scrum planning and task delegation, and mentored two junior interns through code reviews and pair programming."
     ],
     "forceDescription": true,
@@ -27,7 +28,7 @@
         "Took over a partially built property management platform and led it to a successful MVP launch with a maintainable, cohesive codebase.",
         "Refactored legacy Django logic, improved API performance, and reduced tech debt across backend services.",
         "Built a responsive React + Tailwind dashboard managing 20+ properties and 50+ users, with CMS tools for admins and staff.",
-        "Introduced real-time messaging, booking, and rental application features to extend platform capabilities.",
-        "Mentored two junior interns through Jira task planning, pair programming, and code reviews."
+        "Mentored two junior interns through Jira task planning, pair programming, and code reviews.",
+        "Built internal CMS tooling and implemented booking, messaging, and rental application features to extend platform capabilities for 20+ properties and 50+ customers."
     ]
 }

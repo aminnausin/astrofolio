@@ -13,19 +13,8 @@ import Background from "@/components/static/Background.astro";
 import PageLayout from "@/layouts/PageLayout.astro";
 import BaseCard from "@/components/cards/BaseCard.astro";
 import ChipCard from "@/components/cards/ChipCard.astro";
-import IconCard from "@/components/cards/IconCard.astro";
 import Header from "@/components/static/Header.astro";
 import Layout from "@/layouts/Layout.astro";
-
-import GithubActions from "@/components/icons/GithubActions.astro";
-import Tailwindcss from "@/components/icons/Tailwindcss.astro";
-import Typescript from "@/components/icons/Typescript.astro";
-import Laravel from "@/components/icons/Laravel.astro";
-import Django from "@/components/icons/Django.astro";
-import Docker from "@/components/icons/Docker.astro";
-import React from "@/components/icons/React.astro";
-import Vue from "@/components/icons/Vue.astro";
-import Go from "@/components/icons/Go.astro";
 
 const experiences = await getCollection("experiences");
 const projects = (await getCollection("projects")).sort((a: { data: Project }, b: { data: Project }) => a.data.order - b.data.order);
@@ -55,47 +44,6 @@ const skills = (await getEntry("skills", "index"))?.data;
                     Django REST Framework, React, and Express.
                 </a>
             </p>
-
-            <!-- <div
-                class="fill-[#111827] dark:fill-white flex gap-4 text-sm h-0 peer-hover:h-12 hover:h-12 -mt-4 peer-hover:mt-0 hover:mt-0 transition-all duration-500 scrollbar-minimal overflow-x-auto overflow-y-clip peer-hover:pb-1 hover:pb-1"
-            >
-                <IconCard title="Laravel (PHP Full-Stack Framework)">
-                    <Laravel />
-                    Laravel
-                </IconCard>
-                <IconCard title="Vue (Frontend Framework)">
-                    <Vue />
-                    Vue
-                </IconCard>
-                <IconCard title="Django (Python Full-Stack Framework)">
-                    <Django />
-                    Django
-                </IconCard>
-                <IconCard title="React (Frontend Framework)">
-                    <React />
-                    React
-                </IconCard>
-                <IconCard title="TypeScript (Full-Stack Language)">
-                    <Typescript />
-                    TypeScript
-                </IconCard>
-                <IconCard title="Go/Golang (Backend Language)">
-                    <Go />
-                    Go
-                </IconCard>
-                <IconCard title="Tailwind (Frontend Framework)">
-                    <Tailwindcss />
-                    Tailwind
-                </IconCard>
-                <IconCard title="GitHub Actions (CI/CD Platform)">
-                    <GithubActions />
-                    CI/CD
-                </IconCard>
-                <IconCard title="Docker (Container Platform)">
-                    <Docker />
-                    Docker
-                </IconCard>
-            </div> -->
         </header>
 
         <div class="contents">

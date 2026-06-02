@@ -8,7 +8,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "docker:build": "docker build . -t aminnausin/astrofolio && docker push aminnausin/astrofolio"
+    "docker:build": "docker build . -t aminnausin/astrofolio && docker push aminnausin/astrofolio",
+    "docker:build-beta": "docker buildx build . --platform linux/amd64,linux/arm64 -t aminnausin/astrofolio:beta --push",
+    "docker:build-arm": "docker buildx build . --platform linux/amd64,linux/arm64 -t aminnausin/astrofolio:arm --push"
   },
   "dependencies": {
     "@astrojs/vue": "^5.1.0",

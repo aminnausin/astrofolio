@@ -1,19 +1,26 @@
 services:
   astrofolio:
-    image: aminnausin/astrofolio:latest
+    image: aminnausin/astrofolio:beta
     container_name: astrofolio
     restart: unless-stopped
     ports: 
       - 7732:7732
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
+    volumes:
+      - ./logs:/var/log/nginx
   watchtower:
-    image: containrrr/watchtower
     container_name: watchtower-astrofolio
+    image: ghcr.io/nicholas-fedor/watchtower:latest-dev
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: --label-enable --interval 30 --cleanup
-    restart: unless-stopped
+    environment:
+      TZ: America/Toronto
+      WATCHTOWER_CLEANUP: 1
+      WATCHTOWER_INCLUDE_RESTARTING: 1
+      WATCHTOWER_POLL_INTERVAL: 60
+      WATCHTOWER_LABEL_ENABLE: 1
+    restart: on-failure
 
 networks:
   default:

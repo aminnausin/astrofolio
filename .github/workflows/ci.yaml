@@ -1,175 +1,183 @@
 name: CI & Docker Release
 
 on:
-  push:
-    branches: [ 'main' ]
-  workflow_dispatch:
-    inputs:
-      bump:
-        description: 'Version bump type'
-        required: true
-        default: 'patch'
-        type: choice
-        options:
-        - major
-        - minor
-        - patch
+    push:
+        branches: ["main"]
+    workflow_dispatch:
+        inputs:
+            bump:
+                description: "Version bump type"
+                required: true
+                default: "patch"
+                type: choice
+                options:
+                    - major
+                    - minor
+                    - patch
 
 env:
-  BUMP_INPUT: ${{ github.event.inputs.bump || 'patch' }}
+    BUMP_INPUT: ${{ github.event.inputs.bump || 'patch' }}
 
-jobs: 
-  # ==========================
-  #  Check for code updates
-  # ==========================
-  check-code-changes:
-    name: Check for Code Changes
-    runs-on: ubuntu-latest
-    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
-    outputs:
-      files_changed: ${{ steps.filter.outputs.changes != '[]' }}
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+jobs:
+    # ==========================
+    #  Check for code updates
+    # ==========================
+    check-code-changes:
+        name: Check for Code Changes
+        runs-on: ubuntu-latest
+        if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+        outputs:
+            files_changed: ${{ steps.filter.outputs.changes != '[]' }}
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
 
-    - name: Check for file changes
-      id: filter
-      uses: dorny/paths-filter@v2
-      with:
-        filters: |
-          changed:
-              - 'src/**'
-              - 'public/**'
-              - 'docker/**'
-              - '.github/**'
-              - '.dockerignore'
-              - 'Dockerfile'
-              - 'astro.config.mjs'
-              - '*.json*'
+            - name: Check for file changes
+              id: filter
+              uses: dorny/paths-filter@v2
+              with:
+                  filters: |
+                      changed:
+                          - 'src/**'
+                          - 'public/**'
+                          - 'docker/**'
+                          - '.github/**'
+                          - '.dockerignore'
+                          - 'Dockerfile'
+                          - 'astro.config.mjs'
+                          - '*.json*'
 
-    - name: Print changed files output
-      run: |
-        echo "Changed: ${{ steps.filter.outputs.changes != '[]' }}"
+            - name: Print changed files output
+              run: |
+                  echo "Changed: ${{ steps.filter.outputs.changes != '[]' }}"
 
-  astro-tests:
-    needs: [ check-code-changes ]
-    if: needs.check-code-changes.outputs.files_changed == 'true'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    strategy:
-      fail-fast: true
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+    astro-tests:
+        needs: [check-code-changes]
+        if: needs.check-code-changes.outputs.files_changed == 'true'
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+        strategy:
+            fail-fast: true
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
 
-    # ---------- Node Setup ----------
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
+            # ---------- Node Setup ----------
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
 
-    - name: Cache NPM dependencies
-      uses: actions/cache@v3
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: ${{ runner.os }}-node-
+            - name: Cache NPM dependencies
+              uses: actions/cache@v3
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: ${{ runner.os }}-node-
 
-    - name: Install node dependencies
-      run: npm ci
+            - name: Install node dependencies
+              run: npm ci
 
-    # ---------- Build Frontend ----------
-    - name: Type Check Astro and Build
-      run: npm run type-check && npm run build
+            # ---------- Build Frontend ----------
+            - name: Type Check Astro and Build
+              run: npm run type-check && npm run build
 
-  # ==========================
-  #  Generate Version Tag
-  # ==========================
-  generate-version:
-    name: Generate Version
-    runs-on: ubuntu-latest
-    needs: [ astro-tests ]
-    if: success()
-    permissions:
-      contents: write
-    outputs:
-      tag: ${{ steps.bump_version.outputs.tag }}
-    strategy:
-      fail-fast: true
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+    # ==========================
+    #  Generate Version Tag
+    # ==========================
+    generate-version:
+        name: Generate Version
+        runs-on: ubuntu-latest
+        needs: [astro-tests]
+        if: success()
+        permissions:
+            contents: write
+        outputs:
+            tag: ${{ steps.bump_version.outputs.tag }}
+        strategy:
+            fail-fast: true
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
 
-    - name: Configure Git Safe Directory
-      run: git config --global --add safe.directory "$GITHUB_WORKSPACE"  
+            - name: Configure Git Safe Directory
+              run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
-    - name: Bump version in package.json
-      id: bump_version
-      run: |
-        CURRENT_VERSION=$(jq -r .version package.json)
-        IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_VERSION"
+            - name: Bump version in package.json
+              id: bump_version
+              run: |
+                  CURRENT_VERSION=$(jq -r .version package.json)
+                  IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_VERSION"
 
-        if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-          INCREMENT="${BUMP_INPUT:-patch}"
+                  if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+                    INCREMENT="${BUMP_INPUT:-patch}"
 
-          case $INCREMENT in
-            major)
-            MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0 ;;
-            minor)
-            MINOR=$((MINOR + 1)); PATCH=0 ;;
-            patch|*)
-            PATCH=$((PATCH + 1)) ;;
-          esac
-        elif [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
-          IS_MERGE=$(git log -1 --pretty=%P | wc -w)
-          if [ "$IS_MERGE" -gt 1 ]; then
-            MINOR=$((MINOR + 1))
-            PATCH=0
-          else
-            PATCH=$((PATCH + 1))
-          fi
-        fi
+                    case $INCREMENT in
+                      major)
+                      MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0 ;;
+                      minor)
+                      MINOR=$((MINOR + 1)); PATCH=0 ;;
+                      patch|*)
+                      PATCH=$((PATCH + 1)) ;;
+                    esac
+                  elif [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+                    IS_MERGE=$(git log -1 --pretty=%P | wc -w)
+                    if [ "$IS_MERGE" -gt 1 ]; then
+                      MINOR=$((MINOR + 1))
+                      PATCH=0
+                    else
+                      PATCH=$((PATCH + 1))
+                    fi
+                  fi
 
-        NEW_VERSION="$MAJOR.$MINOR.$PATCH"
-        echo "🔖 New version: $NEW_VERSION"
-        jq ".version = \"$NEW_VERSION\"" package.json > temp && mv temp package.json
+                  NEW_VERSION="$MAJOR.$MINOR.$PATCH"
+                  echo "🔖 New version: $NEW_VERSION"
+                  jq ".version = \"$NEW_VERSION\"" package.json > temp && mv temp package.json
 
-        echo "tag=$NEW_VERSION" >> $GITHUB_OUTPUT
+                  echo "tag=$NEW_VERSION" >> $GITHUB_OUTPUT
 
-    - name: Commit updated package.json
-      uses: stefanzweifel/git-auto-commit-action@v5
-      with:
-        commit_message: 'chore: bump version to ${{ steps.bump_version.outputs.TAG }} [skip ci]'
-        file_pattern: package.json
-        
-  # ==========================
-  #  Publish Docker Image
-  # ==========================
-  build-docker:
-    needs: [ astro-tests, generate-version ]
-    name: Build Docker Image
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+            - name: Commit updated package.json
+              uses: stefanzweifel/git-auto-commit-action@v5
+              with:
+                  commit_message: "chore: bump version to ${{ steps.bump_version.outputs.TAG }} [skip ci]"
+                  file_pattern: package.json
 
-    - name: Login to Docker Hub
-      uses: docker/login-action@v3
-      with:
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_HUB_TOKEN }}
+    # ==========================
+    #  Publish Docker Image
+    # ==========================
+    build-docker:
+        needs: [astro-tests, generate-version]
+        name: Build Docker Image
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
 
-    - name: Push to Docker Hub
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        push: true
-        tags: |
-          aminnausin/astrofolio:latest
-          aminnausin/astrofolio:${{ needs.generate-version.outputs.tag }}
-        build-args: |
-          DOMAIN=${{ vars.DOMAIN }}
-          PLAUSIBLE_DOMAIN=${{ vars.PLAUSIBLE_DOMAIN }}
-          RESUME_URL=${{ vars.RESUME_URL }}
- 
+            - name: Login to Docker Hub
+              uses: docker/login-action@v4
+              with:
+                  username: ${{ secrets.DOCKER_HUB_USERNAME }}
+                  password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+            - name: Set up QEMU
+              uses: docker/setup-qemu-action@v4
+
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v4
+
+            - name: Push to Docker Hub
+              uses: docker/build-push-action@v5
+              with:
+                  context: .
+                  platforms: linux/amd64,linux/arm64
+                  push: true
+                  tags: |
+                      aminnausin/astrofolio:latest
+                      aminnausin/astrofolio:${{ needs.generate-version.outputs.tag }}
+                  build-args: |
+                      DOMAIN=${{ vars.DOMAIN }}
+                      PLAUSIBLE_DOMAIN=${{ vars.PLAUSIBLE_DOMAIN }}
+                      RESUME_URL=${{ vars.RESUME_URL }}
+                  cache-from: type=gha
+                  cache-to: type=gha,mode=max

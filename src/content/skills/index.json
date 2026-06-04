@@ -1,29 +1,28 @@
 {
     "Frontend": [
-        "Vue.js",
+        "Vue",
         "React",
         "Astro",
-        "Next.js",
         "TailwindCSS"
     ],
     "Backend": [
         "Laravel",
-        "Go",
-        "Node.js",
-        "Django",
-        ".NET",
-        "PHP"
+        "Express.js",
+        "Django"
     ],
     "Infra & DevOps": [
         "Docker",
         "GitHub Actions",
-        "Nix",
+        "Node.js",
+        "Linux",
         "Caddy"
     ],
     "Languages": [
         "TypeScript",
+        "PHP",
         "Python",
-        "C#",
-        "JavaScript"
+        "JavaScript",
+        "Go",
+        "C#"
     ]
 }

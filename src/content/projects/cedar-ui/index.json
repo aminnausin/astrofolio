@@ -3,7 +3,7 @@
     "title": "Cedar-UI",
     "date": "Jul 2025 - Present",
     "tech": [
-        "Vue.js",
+        "Vue",
         "TypeScript",
         "VitePress",
         "Tailwind",
@@ -11,6 +11,6 @@
     ],
     "link": "https://cedar-ui.nausin.me",
     "github": "https://github.com/aminnausin/cedar-ui",
-    "snapshot": "A minimalist Vue.js UI Library for use in my projects.",
+    "snapshot": "A minimalist Vue UI Library for use in my projects.",
     "picture": "cedar-ui/preview.webp"
 }

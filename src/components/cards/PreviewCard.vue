@@ -50,7 +50,10 @@ onUnmounted(() => {
 
 <template>
     <button
-        :class="['group hover:text-purple-700 dark:hover:text-purple-600 transition-all flex flex-col cursor-pointer', { 'text-purple-600': isPreviewing }]"
+        :class="[
+            'group hover:text-purple-700 dark:hover:text-purple-500 flex flex-col cursor-pointer transition-[color]',
+            { 'text-purple-600 dark:text-purple-400': isPreviewing },
+        ]"
         title="Open Preview"
         @click="togglePreview"
     >
